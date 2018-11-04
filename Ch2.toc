@@ -1,0 +1,11 @@
+\contentsline {chapter}{\numberline {2}Background and Literature Review}{2}
+\contentsline {section}{\numberline {2.1}Problem Space for Facial Expression Analysis}{2}
+\contentsline {subsection}{\numberline {2.1.1}Level of Description}{2}
+\contentsline {subsubsection}{Facial Action Coding System}{3}
+\contentsline {section}{\numberline {2.2}System Structure}{4}
+\contentsline {section}{\numberline {2.3}Face Detection}{5}
+\contentsline {subsection}{\numberline {2.3.1}Support Vector Machine}{6}
+\contentsline {section}{\numberline {2.4}Face Database}{8}
+\contentsline {subsection}{\numberline {2.4.1}Databases For Identity Recognition}{8}
+\contentsline {subsection}{\numberline {2.4.2}Databases for Expression Recognition}{11}
+\contentsline {section}{\numberline {2.5}Chapter Summary}{12}
