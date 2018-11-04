@@ -1,0 +1,26 @@
+\contentsline {chapter}{\numberline {2}Background and Literature Review}{2}
+\contentsline {section}{\numberline {2.1}Problem Space for Facial Expression Analysis}{2}
+\contentsline {subsection}{\numberline {2.1.1}Level of Description}{2}
+\contentsline {subsubsection}{Facial Action Coding System}{3}
+\contentsline {subsubsection}{Prototypic Emotional Expressions}{4}
+\contentsline {section}{\numberline {2.2}System Structure}{4}
+\contentsline {section}{\numberline {2.3}Face Detection}{5}
+\contentsline {subsection}{\numberline {2.3.1}Eigenface and Template Matching}{6}
+\contentsline {subsection}{\numberline {2.3.2}Viola's Framework}{8}
+\contentsline {subsubsection}{Haar Wavelet}{8}
+\contentsline {subsubsection}{Constructing Weak Classifier}{10}
+\contentsline {subsubsection}{Boosting Strong Classifier}{11}
+\contentsline {section}{\numberline {2.4}Face Alignment}{12}
+\contentsline {subsection}{\numberline {2.4.1}Curve Fitting}{14}
+\contentsline {paragraph}{}{15}
+\contentsline {section}{\numberline {2.5}Feature Extraction}{15}
+\contentsline {subsection}{\numberline {2.5.1}Tensorface}{16}
+\contentsline {subsection}{\numberline {2.5.2}Potential Net}{17}
+\contentsline {subsection}{\numberline {2.5.3}Active Appearance Model}{18}
+\contentsline {subsection}{\numberline {2.5.4}Sub-window Features}{19}
+\contentsline {section}{\numberline {2.6}Classifcation}{19}
+\contentsline {subsection}{\numberline {2.6.1}Support Vector Machine}{20}
+\contentsline {section}{\numberline {2.7}Face Database}{22}
+\contentsline {subsection}{\numberline {2.7.1}Databases For Identity Recognition}{22}
+\contentsline {subsection}{\numberline {2.7.2}Databases for Expression Recognition}{25}
+\contentsline {section}{\numberline {2.8}Chapter Summary}{26}
