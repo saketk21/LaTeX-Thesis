@@ -6,6 +6,8 @@
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage{fancyhdr}
+\usepackage{amsmath}
+
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[RO,LE]{\thepage}
@@ -124,8 +126,145 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\large{which is called normalized Euclidean distance. A large $D$ implies a small probability of being a face image and vice versa. Based on (2.5) Turk and Pentland [87] built a face detection system. Sung and Poggio's paper [82] used a similar idea, they assume images are produced by a mixture of Gaussian models: a face image Gaussian and a non-face image Gaussian. So they also estimate the probability of $x$ of being a non-face image $f'(x)$ and the final decision is made using a Bayesian classifier.}\\
 	\large{If we further assume $\sum_{}^{}$ is an identity matrix, (2.5) degenerates into Euclidean distance which means the probability density function is controlled by, $|x - \mu|^2$, the variation of the image from the average face $\mu$. This gives the simplest detection algorithm: template matching, i.e., finding a "face template" $\mu$, and then for each $x$ determine whether it is a face image by thresholding $|x - \mu|$.}
 	
-% Add Page 11 - 16
+% Add Page 11 - 12
 	
+	\newpage	
+% Page no. - 13
+	\begin{figure}
+		\centering
+		\includegraphics{img/13_1.png}
+		\caption{Compute rectangle sum using integral image}
+	\end{figure}
+	
+	\par
+	The use of integral images leads to enormous savings and makes it possible to use Haar
+	wavelets in a real-time detection system.
+	\subsubsection{Constructing Weak Classifier}
+	
+	\par
+	In Viola’s Framework, ``the AdaBoost learning procedure is used to solve the following
+	three fundamental problems: 1) learning effective features from a large feature set; 2)
+	constructing weak classifiers, each of which is based on one of the selected features; and
+	3) boosting the weak classifiers to construct a strong classifier''. We’ll talk about the
+	first in this section.Suppose a set of N labeled training examples $(x1, y1), . . . ,(xN , yN )$ is given, where
+	$yi = {1, −1} $is the label of image $xi$. We also assume a weight$ wi$ is assigned to each example, and how to compute this weight will be given in the next section. $K$ Haar features $F_k, k = 1, 2, . . . K$ can be computed for each image; in Viola’s detection system constructing a weak classifier means determining a feature Fkm, a direction $bm = {1, −1}$ and a threshold $f_m$:
+	\[
+		h_m = \begin{cases}
+			+1  & \quad \text{$if (F_{k_m} - f_m) b_m > 0$} \\
+			-1  & \quad \text{otherwise}
+			\end{cases}
+	\]
+	\par
+	This simple classifier is called a “stump”. We choose the three parameters $k_m$, $b_k$ and $f_k$ to minimize some objective function, for example weighted classification error. This
+	optimization can be done in two steps: for each$ Fk$ , find the best$ bk, fk $0and corresponding
+	weighted error $errk$; then choose $(km, bk, fk)$ which corresponds to the smallest$ errk$.}
+	\subsubsection{Boosting Strong Classifier}
+	
+	\par
+	AdaBoost iteratively learns a sequence of weak classifiers$ hm$ and constructs a strong one$
+	HM$ using their linear combination. In each cycle AdaBoost does two things: find the best
+	linear combination coefficients, and update the sample weights. Both of these tasks are
+	based on the upper bound on classification error of$ HM$. [74] shows that the bound can be
+	derived from the following exponential loss function:
+	
+	\begin{equation}
+	J(Hm)=\sum  e^{-y_iH_m(x_i)} =\sum e^{-yi \sum a_m h_m(x_i)} 
+	\end{equation}
+	
+	Given the current strong classifier $H_(m-1)(x)=\sum a_m h_m (x)$ and the newly learned
+	weak classifier $hM$, the best combining coefficient$ aM$ is the minimizer of the following
+	optimization problem:
+	
+	\begin{equation}
+	a_M = argminJ(H_(m-1)(x)+ah_m(x))
+	\end{equation}
+	
+	\begin{equation}
+	a_M=\log (1-err_M ) /err_M  
+	\end{equation}
+	
+	where $err_M$ is the weighted error of $h_M$ defined as
+	
+	\begin{equation}
+	err_M=\sum w_i^(M-1)(sgn(h_M(x))-y_i)/2
+	\end{equation}
+	
+	Equation (2.17) suggests if the new weak classifier has a good performance (small $err_M$),
+	we’ll give it a large $a_M$; otherwise it will be assigned a small coefficient.
+	To update the weight of each training sample, let’s rewrite (2.16) as follows:
+	
+	\begin{equation}
+	J(H_m)=\sum e^-y_i \sum a_m h_m (x)
+	\end{equation}
+	
+	\newpage
+% Page no. - 15
+	\par
+	Equation (2.19) means the contribution in $J(H_M)$ of the $i$th example is the error of $h_M(x)$ on $x_i$, $e^{-y_ia_Mh_M(x_i)}$, multiplied by $e^{-y_iH_{(M-1)}(x_i)}$. So we can define the weight of the $i$th example after the $M$th iteration as:
+	\begin{equation}
+		w^{(M)}(x_i) = e^{-y_iH_M(x_i)}
+	\end{equation}
+
+	\par
+	Intuitively this is saying if the current strong classifier already can classify an example $x_i$ correctly, then it doesn’t really matter what performance the new weak classifier can achieve on $x_i$; on the other hand, we can expect $h_M(x)$ to fix this problem.
+
+	\par	
+	So the updated formula of $w^{(m)}(x_i)$ is:
+
+	\begin{equation}
+		w^{(M)}(x_i) = w^{(M-1)}(x_i)e^{-y_ia_Mh_M(x_i)}
+	\end{equation}
+
+	\par	
+	Usually, the training set is unbalanced—the number of training images with $y_i$= 1 is larger(smaller) than the number of images with $y_i$=$-1$. In such cases, the $y_i$=1 ($y_i$=$-1$) set will dominate the training process. To eliminate this assymetry, one way is to initialize the sample weights such that:
+
+	\begin{equation}
+		\sum_{i}w_i^{(0)} y_i = 0
+	\end{equation}
+
+	\par
+	The algorithm is summarized in Alg.1.
+	
+	\section{Face Alignment}
+	The aim of face alignment is to achieve more accurate localization of the face, and usually the facial components (feature points). A typical result of face detection and face alignment is compared in Fig.2.7. As we can see, detection considers the images in terms of areas whereas alignment has a precision of pixels.
+	\par
+	Various algorithms have been proposed since 1990's. Gu \textit{ et al}. \cite{29} use histogram information to localize mouth corners and eye corners. In \cite{26}, Ian and Marian implement a preliminary alignment system using Gabor filter to detect pupils and philtrum. Curve fitting algorithms, especially Active Shape Model \cite{18} and its offspring may be the most successful alignment methods nowadays. Cootes \textit{ et al}. \cite{18} \cite{45} \cite{16} propose Active Shape Model and apply it to face image. After that, ASM is widely used in face image processing; a great amount of effort has been made to improve its speed, accuracy and robustness. In \cite{36} the Active Shape Model is combined with the Gabor filter;
+% Page No. - 16
+	Li \textit{ et al}. \cite{78} propose Direct Appearance Model; \cite{56} and \cite{101} enhance ASM by using 2-D local textures feature for local search. 
+
+	\par
+	This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model. \\ 
+	\textbf{Input:} \\
+	\par Training examples Z={(x1,y1),...,(xn,yn)}, where N=a+b, of which a examples have $y_i$=1 and b examples have $y_i$=$-1$ \\
+	\par The number M of weak classifiers to be combined.
+
+	\textbf{Initialization:} \\
+	\[
+		w_i^{0}= \begin{cases}
+			\frac{1}{2a}  & \quad \text{for those examples with yi=1} \\
+			\frac{1}{2b}  & \quad \text{otherwise}
+			\end{cases}
+	\]
+	\textbf{end}\\
+	\textbf{Forward Inclusion:} \\
+
+	for m=1, ..., M do \\
+	\par \{
+	\par choose optimal $h_M$ to minimize the weighted error \\
+	\par choose $a_m$ according to (2.17) \\
+	\par update $w_i^{m} \leftarrow w_i^{(M-1)}e^{-y_ia_Mh_M(x_i)}$ and normalize to $\displaystyle\sum_{i}w_i^{(m)}=1$  \\
+	\par \}
+	\par end \\
+	end \\
+	\par 
+	\textbf{Output:} \\
+	\par Classification function: $H_M(x)$ as in 2.20 \\
+	\par Class label prediction:$y(x) = sgn(H_M(x))$
+
+	\begin{center}
+		Algorithm 1: AdaBoost learning algorithm \cite{35}
+	\end{center}
+
 	\newpage
 	
 % Page no - 17
@@ -143,7 +282,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 		\label{fig:test2}
 		\end{subfigure}
 		\caption{Detection Vs Alignment}
-		\end{figure}
+	\end{figure}
 		
 		\section{Curve Fitting}
 		The basic problem of curve fitting is to locate the contour of an object in an image. Most
@@ -391,6 +530,66 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\section{Chapter Summary}
 	\par
 	In this chapter, we first talked about the background of facial analysis, then gave an overview of the development in this area, and we also briefly introduced some state of the art techniques which might be useful for our system. At the end, we had a glance at some face databases for identity and expression recognition. Starting in the next chapter, we'll discuss the design of our FER system.
-	\end{document}
+
+
+	\begin{thebibliography}{9}
+		\bibitem{1}
+			P. Aleksic and A. Katsaggelos. Automatic facial expression 				recognition using facial animation parameters and multistream 			hmms. Information Forensics and Security, IEEE Transactions 			on, 1:3–11, March 2006.
+			
+		\bibitem{15} 
+			A. Colmenarez, B. Frey, and T. S. Huang. A probabilistic 				framework for embedded face and facial expression recognition. 		pages 592–597.
+	
+		\bibitem{22} 
+			R. De-Valois and K. De-Valois. Spatial Vision. Oxford Univ. 			Press, New York, 1990.
+	
+		\bibitem{37} 
+			J. Jones and L. Palmer. An evaluation of two-dimensional gabor 		filter model of simple receptive fields in cat striate cortex. 		Journal of Neurophysiology, 58(6):1233–1258,1987.
+		\bibitem{41}
+			S. Kimura and M. Yachida. Facial expression recognition and 			its degree estimation. In CVPR ’97: Proceedings of the 1997 			Conference on Computer Vision and Pattern Recognition (CVPR 			’97), page 295, Washington, DC, USA, 1997. IEEE Computer 				Society.	
+		\bibitem{44}
+			I. Kotsia and I. Pitas. Facial expression recognition in image 		sequences using geometric deformation features and support 				vector machines. IEEE Transactions on Image Processing, 16(1):			172–187, 2007.
+		\bibitem{61}
+			K. Matsuno, C.-W. Lee, S. Kimura, and S. Tsuji. Automatic 				recognition of human facial expressions. In ICCV ’95: 					Proceedings of the Fifth International Conference on Computer 			Vision, page 352, Washington, DC, USA, 1995. IEEE Computer 				Society.		
+		
+		\bibitem{76}
+			A. Shashua and T. Hazan. Non-negative tensor factorization 				with applications to statistics and computer vision. In ICML 			’05: Proceedings of the 22nd international conference on 				Machine learning, pages 792–799, New York, NY, USA, 2005. ACM.	
+		\bibitem{90}
+			M. A. O. Vasilescu and D. Terzopoulos. Multilinear analysis of 		image ensembles: Tensorfaces. In ECCV (1), pages 447–460, 				2002.
+		\bibitem{92}
+			M. A. O. Vasilescu and D. Terzopoulos. Multilinear independent 		components analysis. In CVPR ’05: Proceedings of the 2005 IEEE 		Computer Society Conference on Computer Vision and Pattern 				Recognition (CVPR’05) - Volume 1, pages 547–553, Washington, 			DC, USA, 2005. IEEE Computer Society.
+		\bibitem{103}
+			L. Yin and X. Wei. Multi-scale primal feature based facial 			expression modeling and identification. In FGR ’06: 					Proceedings of the 7th International Conference on Automatic 			Face and Gesture Recognition, pages 603–608, Washington, DC, 			USA, 2006. IEEE Computer Society.
+		\bibitem{104}
+		J. Yu and B. Bhanu. Evolutionary feature synthesis for facial 			expression recognition. Pattern Recogn. Lett., 27(11):1289–				1298, 2006.
+		\bibitem{16}
+		T. Cootes, C. Taylor, and A. Lanitis. Multi-resolution search with active shape models. pages A:610–612, 1994. 
+		
+		\bibitem{18}
+		T. F. Cootes, C. J. Taylor, D. H. Cooper, and J. Graham. Active shape models-their training and application. Comput. Vis. Image Underst., 61(1):38–59, 1995.
+		
+		\bibitem{26}
+		I. Fasel, M. Bartlett, and J. Movellan. A comparison of gabor filter methods for automatic detection of facial landmarks, 2002. 
+			
+		\bibitem{29}
+		H. Gu, G. Su, and C. Du. Feature points extraction from faces. Proceedings of Image and Vision Computing New Zealand Conference, pages 154–158, November 2003. 
+		
+		\bibitem{35}
+		A. K. Jain and S. Z. Li. Handbook of Face Recognition. Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2005. 
+		
+		\bibitem{36}
+		F. Jiao, S. Li, H.-Y. Shum, and D. Schuurmans. Face alignment using statistical models and wavelet features. cvpr, 01:321, 2003.
+		
+		\bibitem{45}
+		A. Lanitis, C. J. Taylor, and T. F. Cootes. Automatic interpretation and coding of face images using flexible models. IEEE Trans. Pattern Anal. Mach. Intell., 19(7):743–756, 1997. 
+		
+		\bibitem{56}
+		Y. Liu, Y. Li, L. Tao, and G. Xu. Multi-view face alignment guided by several facial feature points. In ICIG ’04: Proceedings of the Third International Conference on Image and Graphics (ICIG’04), pages 238–241, Washington, DC, USA, 2004. IEEE Computer Society. 
+			
+		\bibitem{78}
+		Y. ShuiCheng and Q. Cheng. Multi-view face alignment using direct appearance models. In FGR ’02: Proceedings of the Fifth IEEE International Conference on Automatic Face and Gesture Recognition, page 324, Washington, DC, USA, 2002. IEEE Computer Society. 
+			
+		\bibitem{101}
+		S. Xin and H. Ai. Face alignment under various poses and expressions. In Tao et al. [85], pages 40–47. 
+	\end{thebibliography}
 
 \end{document}
