@@ -1,0 +1,98 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\begin{document}
+
+\section*{2.7 Face Database}
+"Because of its non rigidity and complex three-dimensional structure, the appearance of a face is affected by a large number of factors including identity, face pose, illumination, facial expression, age, occlusion, and facial hair. The development of algorithms robust to these variations requires databases of sufficient size that include carefully controlled variations of these factors. Furthermore, common databases are necessary to comparatively evaluate algorithms. Collecting a high quality database is a resource-intensive task: but the availability of public face databases is important for the advancement of the field" [35]. In this section we briefly review some publicly available databases for face recognition, face detection, and facial expression analysis, and we'll mainly focus on the three databases which we will use in this thesis. 
+\par
+To facilitate this statement, we divide face databases into two categories according to their designing goals. In the first part, we'll introduce databases which are normally used for face recognition; those which are dedicated to expression recognition will be discussed in the second part. As only a few databases are of the second type, and FER system shares some common modules with identity recognition system, in this work we also use some databases of the first type.
+
+\section*{2.7.1 Databases For Identity Recognition}
+Most face databases are of this category (Table.2.1). To test for robustness, some of them are captured under different poses, illuminations and expressions. However, because they're mainly designed for identity recognition, the expressions are added as noise and usually not well controlled. So in general these databases are considered not suitable for FER research. In our work, we only use them to train peripheral modules (processing and Feature Extraction).
+
+\section*{The IMM Face Database [66]}
+The IMM Face Database comprises 240 still images of 40 individuals (7 females and 33 males), all without glasses. For each person, 6 images are provided:
+
+
+\newpage
+\par 
+
+\begin{table}
+\caption{Some of the most popular Face Recognition Databases [35] }
+  \centering
+  \resizebox{10cm}{!}{
+  \begin{tabular}{|r||l|c|c|c|}\hline
+  Database & No. of subjects & Pose & Illumination &Facial Expressions\\ \hline\hline
+  AR & 116 & 1 & 4 & 4\\\hline
+  BANCA & 208 & 1 & ++ & 1\\\hline
+  CAS-PEAL & 66-1040 & 21 & 9-15 & 6\\\hline
+  CMU HYPER & 54 & 1 & 4 & 1\\\hline
+  CMU PIE & 54 & 1 & 4 & 1\\\hline
+  Equinox IR & 91 & 1 & 3 & 3\\\hline
+  FERET & 1199 & 9-20 & 2 & 2\\\hline
+  Harvard RL & 10 & 1 & 77-84 & 1\\\hline
+  IMM FACE & 40 & 3 & 2 & 3+\\\hline
+  KFDB & 1000 & 7 & 16 & 5\\\hline
+  MIT & 15 & 3 & 3 & 1\\\hline
+  MPI & 200 & 3 & 3 & 1\\\hline
+  ND HID & 300+ & 1 & 3 & 2\\\hline
+  NIST MID & 1573 & 2 & 1 & ++\\\hline
+  ORL & 10 & 1 & ++ & ++\\\hline
+  UMIST & 20 & ++ & 1 & ++\\\hline
+  U.Texas & 284 & ++ & 1 & ++\\\hline
+  U. Oulu & 125 & 1 & 16 & 1\\\hline
+  XM2VTS & 295 & ++ & 1 & ++\\\hline
+  Yale & 15 & 1 & 3 & 6\\\hline
+  Yale B & 10 & 9 & 64 & 1\\\hline
+  
+  \hline
+  \end{tabular}
+  }
+  \label{2.1}
+\end{table}
+
+\begin{description}
+\item[$\bullet$ Frontal face, neutral expression, diffuse light.]
+\item[$\bullet$ Frontal face, happy expression, diffuse light.]
+\item[$\bullet$ Face rotated approx. 30 degrees to the person's right]
+\item[$\bullet$ Face rotated approx. 30 degrees to the person's left, neutral expression]
+\end{description}
+
+
+\newpage
+\par
+
+\begin{table}
+\caption{Commonly used expression recognition databases [35] }
+  \centering
+  \resizebox{10cm}{!}{
+  \begin{tabular}{r||l|c|c|c}
+  Database & No. of subjects & No. of Expressions & Image Resolution & Video/Image\\ \hline\hline
+  JAFFE & 10 & 7 & 256 X 256 & Image\\\hline
+  U. Maryland & 40 & 6 & 560 X 240 & Video\\\hline
+  Cohn-Kanade & 100 & 23 & 640 X 480 & Video\\\hline
+  \hline
+  \end{tabular}
+  }
+\end{table}
+
+labels. The images were originally printed in monochrome and then digitized using a flatbed scanner.
+\begin{figure}
+\includegraphics[width=\textwidth]{216.jpg}
+\caption{Example images from JAFFE database[35]}
+\label{Fig 2.16}
+\end{figure}
+\section*{2.8 Chapter Summary}
+\par
+In this chapter, we first talked about the background of facial analysis, then gave an overview of the development in this area, and we also briefly introduced some state of the art techniques which might be useful for our system. At the end, we had a glance at some face databases for identity and expression recognition. Starting in the next chapter, we'll discuss the design of our FER system.
+\end{document}
+
+\begin{thebibliography}{9}
+	\bibitem{35}
+		 A. K. Jain and S. Z. Li. Handbook of Face Recognition. Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2005. 
+\end{thebibliography}
+	\bibitem{66}
+	 M. M. Nordstrøm, M. Larsen, J. Sierakowski, and M. B. Stegmann. The IMM face database - an annotated dataset of 240 face images. Technical report, Informatics and Mathematical Modelling, Technical University of Denmark, DTU, Richard Petersens Plads, Building 321, DK-2800 Kgs. Lyngby, may 2004. 
