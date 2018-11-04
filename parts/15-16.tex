@@ -1,0 +1,115 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\begin{document}
+\par
+Equation (2.19) means the contribution in $J(H_M)$ of the ith example is the error of $h_M(x)$ on $x_i$,$e^{-y_ia_Mh_M(x_i)}$, multiplied by $e^{-y_iH_{(M-1)}(x_i)}$. So we can define the weight of the ith example after the Mth iteration as:
+\begin{center}
+\begin{equation}
+$$
+$w^{(M)}(x_i)$=$e^{-y_iH_M(x_i)}$
+$$
+\end{equation}
+\end{center}
+\par
+	Intuitively this is saying if the current strong classifier already can classify an example $x_i$ correctly, then it doesn’t really matter what performance the new weak classifier can achieve on $x_i$; on the other hand, we can expect $h_M(x)$ to fix this problem.
+\par
+	
+So the updated formula of $w^{(m)}(x_i)$ is:
+\begin{center}
+
+\begin{equation}
+$$
+$w^{(M)}(x_i)$=$w^{(M-1)}(x_i)e^{-y_ia_Mh_M(x_i)}$
+$$
+\end{equation}
+\end{center}
+
+\par	
+	Usually, the training set is unbalanced—the number of training images with $y_i$= 1 is larger(smaller) than the number of images with $y_i$=$-1$. In such cases, the $y_i$=1 ($y_i$=$-1$) set will dominate the training process. To eliminate this assymetry, one way is to initialize the sample weights such that:
+	\begin{center}
+		\begin{equation}
+		$$
+	$\displaystyle\sum_{i}w_i^{(0)}y_i$=0
+	$$
+	\end{equation}
+	\end{center}
+\par
+The algorithm is summarized in Alg.1.
+			
+\section{Face Alignment}
+The aim of face alignment is to achieve more accurate localization of the face, and usually the facial components (feature points). A typical result of face detection and face alignment is compared in Fig.2.7. As we can see, detection considers the images in terms of areas whereas alignment has a precision of pixels.
+\par
+Various algorithms have been proposed since 1990's. Gu \textit{ et al}. \cite{29} use histogram information to localize mouth corners and eye corners. In \cite{26}, Ian and Marian implement a preliminary alignment system using Gabor filter to detect pupils and philtrum. Curve fitting algorithms, especially Active Shape Model \cite{18} and its offspring may be the most
+
+\textbf{Input:} \\
+\par Training examples Z={(x1,y1),...,(xn,yn)}, where N=a+b, of which a examples have $y_i$=1 and b examples have $y_i$=$-1$ \\
+\par The number M of weak classifiers to be combined.
+
+\textbf{Initialization:} \\
+\par $w_i^{0}$=
+$\begin{cases}
+	\frac{1}{2a}  & \quad \text{for those examples with yi=1} \\
+	\frac{1}{2b}  & \quad \text{otherwise}
+\end{cases}$ \\
+\par end
+
+\textbf{Forward Inclusion:} \\
+
+ for m=1, ..., M do \\
+\par \{
+\par choose optimal $h_M$ to minimize the weighted error \\
+\par choose $a_m$ according to (2.17) \\
+\par update $w_i^{m} \leftarrow w_i^{(M-1)}e^{-y_ia_Mh_M(x_i)}$ and normalize to $\displaystyle\sum_{i}w_i^{(m)}=1$  \\
+\par \}
+\par end \\
+ end \\
+ \par 
+\textbf{Output:} \\
+\par Classification function: $H_M(x)$ as in 2.20 \\
+\par Class label prediction:$y\land(x)$=sgn$(H_M(x))$
+
+\begin{center}
+	Algorithm 1: AdaBoost learning algorithm \cite{35}
+	
+\end{center}
+
+successful alignment methods nowadays. Cootes \textit{ et al}. \cite{18} \cite{45} \cite{16} propose Active Shape Model and apply it to face image. After that, ASM is widely used in face image processing; a great amount of effort has been made to improve its speed, accuracy and robustness. In \cite{36} the Active Shape Model is combined with the Gabor filter; Li \textit{ et al}. \cite{78} propose Direct Appearance Model; \cite{56} and \cite{101} enhance ASM by using 2-D local textures feature for local search. 
+
+\par
+This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model.
+
+\begin{thebibliography}{9}
+	\bibitem{16}
+	T. Cootes, C. Taylor, and A. Lanitis. Multi-resolution search with active shape models. pages A:610–612, 1994. 
+	
+	\bibitem{18}
+	T. F. Cootes, C. J. Taylor, D. H. Cooper, and J. Graham. Active shape models-their training and application. Comput. Vis. Image Underst., 61(1):38–59, 1995.
+	
+	\bibitem{26}
+	I. Fasel, M. Bartlett, and J. Movellan. A comparison of gabor filter methods for automatic detection of facial landmarks, 2002. 
+	 
+	\bibitem{29}
+	H. Gu, G. Su, and C. Du. Feature points extraction from faces. Proceedings of Image and Vision Computing New Zealand Conference, pages 154–158, November 2003. 
+	
+	\bibitem{35}
+	A. K. Jain and S. Z. Li. Handbook of Face Recognition. Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2005. 
+	
+	\bibitem{36}
+	F. Jiao, S. Li, H.-Y. Shum, and D. Schuurmans. Face alignment using statistical models and wavelet features. cvpr, 01:321, 2003.
+	
+	\bibitem{45}
+	A. Lanitis, C. J. Taylor, and T. F. Cootes. Automatic interpretation and coding of face images using flexible models. IEEE Trans. Pattern Anal. Mach. Intell., 19(7):743–756, 1997. 
+	
+	\bibitem{56}
+	Y. Liu, Y. Li, L. Tao, and G. Xu. Multi-view face alignment guided by several facial feature points. In ICIG ’04: Proceedings of the Third International Conference on Image and Graphics (ICIG’04), pages 238–241, Washington, DC, USA, 2004. IEEE Computer Society. 
+		
+	\bibitem{78}
+	Y. ShuiCheng and Q. Cheng. Multi-view face alignment using direct appearance models. In FGR ’02: Proceedings of the Fifth IEEE International Conference on Automatic Face and Gesture Recognition, page 324, Washington, DC, USA, 2002. IEEE Computer Society. 
+		
+	\bibitem{101}
+	S. Xin and H. Ai. Face alignment under various poses and expressions. In Tao et al. [85], pages 40–47. 
+\end{thebibliography}
+\end{document}
