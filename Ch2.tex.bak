@@ -58,24 +58,6 @@ These expressions, or facial configurations have been recognized in people from 
 
 These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and anger plus ``neutral'' which means no facial expression are considered in this work. Given a facial image, our system either works as a conventional classifier to determine the most likely emotion or estimates the weights (or possibility) of each emotion as a fuzzy classifier does.
 
-<<<<<<< HEAD
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{img/7_1.png}
-    \caption{Basic facial expression phenotypes. 1, disgust; 2, fear; 3, joy; 4, surprise; 5, sadness; 6, anger}
-    \label{fig:7_1}
-\end{figure}
-
-\section{System Structure}
-FER can be considered as a special face recognition system or a module of a face recognition system. So it should be instructive to look at the general architecture of a face recognition system. Normally, it consists of four components as depicted in \ref{fig:8_1}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\textwidth]{img/8_1.png}
-    \caption{Face recognition processing flow}
-    \label{fig:8_1}
-\end{figure}
-=======
 	\begin{figure}[h]
     	\centering
     	\includegraphics[width=0.5\textwidth]{img/12_1.png}
@@ -192,7 +174,6 @@ FER can be considered as a special face recognition system or a module of a face
   	}
 	\label{2.1}
 	\end{table}
->>>>>>> 7c1a9b129a410bcf2fad8b95612a66543d164f35
 
 
 	\begin{itemize}
