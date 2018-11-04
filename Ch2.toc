@@ -5,13 +5,14 @@
 \contentsline {subsubsection}{Prototypic Emotional Expressions}{4}
 \contentsline {section}{\numberline {2.2}System Structure}{4}
 \contentsline {section}{\numberline {2.3}Face Detection}{5}
-\contentsline {section}{\numberline {2.4}Curve Fitting}{6}
-\contentsline {paragraph}{}{7}
-\contentsline {section}{\numberline {2.5}Feature Extraction}{7}
-\contentsline {section}{\numberline {2.6}Tensorface}{8}
-\contentsline {section}{\numberline {2.7}Potential Net}{9}
-\contentsline {subsection}{\numberline {2.7.1}Support Vector Machine}{10}
-\contentsline {section}{\numberline {2.8}Face Database}{12}
-\contentsline {subsection}{\numberline {2.8.1}Databases For Identity Recognition}{12}
-\contentsline {subsection}{\numberline {2.8.2}Databases for Expression Recognition}{15}
-\contentsline {section}{\numberline {2.9}Chapter Summary}{16}
+\contentsline {subsection}{\numberline {2.3.1}Eigenface and Template Matching}{6}
+\contentsline {section}{\numberline {2.4}Curve Fitting}{8}
+\contentsline {paragraph}{}{9}
+\contentsline {section}{\numberline {2.5}Feature Extraction}{9}
+\contentsline {section}{\numberline {2.6}Tensorface}{10}
+\contentsline {section}{\numberline {2.7}Potential Net}{11}
+\contentsline {subsection}{\numberline {2.7.1}Support Vector Machine}{12}
+\contentsline {section}{\numberline {2.8}Face Database}{14}
+\contentsline {subsection}{\numberline {2.8.1}Databases For Identity Recognition}{14}
+\contentsline {subsection}{\numberline {2.8.2}Databases for Expression Recognition}{17}
+\contentsline {section}{\numberline {2.9}Chapter Summary}{18}

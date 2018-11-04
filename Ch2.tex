@@ -85,8 +85,49 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\section{Face Detection}
 	Face detection is the first step in face recognition. It has a major influence on the performance of the entire system. Several cues can be used for face detection, for example, skin color, motion (for videos), facial/head shape, and facial appearance. Most successful face detection algorithms are based on only appearance. This may be because
 
-% Add Page 9 - 22
-
+	\newpage
+	
+	% Page no - 9
+	\large{appearance-based algorithms avoid difficulties in modeling 3D structures of faces. However, the variations of 3D structures due to facial expression and head pose actually heavily affect the facial appearance and make the face/non-face boundary highly complex [7]. To deal with this, a vast arrange of methods have been proposed since the 1990s.}\par
+	\large{Turk and Pentland [87] describe a detection system based on eigen decomposition which is also known as principal component analysis (PCA). In their method, an image is represented by an average face plus a set of weighted “eigenfaces”. Whereas only the face images are considered in eigenface, Sung and Poggio [82] also consider the distribution of non-face images and apply Bayes’ rule to obtain a likelihood estimation. Rowley et al. [72] use neural networks and Osuna et al. [68] trained a Kernel Support Vector Machine to classify face and non-face images. In these systems, a bootstrap algorithm is iteratively used to collect meaningful examples for retraining the detector.}\par
+	\large{Schneiderman and Kanade [75] use AdaBoost learning to construct a classifier based on wavelet representation of the image. This method is computationally expensive because of the wavelet transformation. To overcome this problem, Viola and Jones [93] replace wavelets with Haar features, which can be computed very efficiently [20] [80]. Their system is the first realtime frontal-view face detector [94].}\par
+	\large{Under Viola’s framework, some improvements have been proposed. Lienhart et al. [52] use rotated Haar features to deal with in-plane rotation. Li et al. [51] [50] [52] propose a multiview face detection system which can also handle out-of-plane rotation using a detector-pyramid.}\par
+	\large{In the following sections, we will describe two face detection algorithms: Eigenface is one of the simplest methods and Viola’s framework may be the most successful one. AdaBoost learning is an important component in Viola’s framework and this algorithm will also be useful in the feature extraction module, so our presentation focuses on this part.}
+			
+	\subsection{Eigenface and Template Matching}
+	\large{Eigenface assumes the face image $x = (x_1,x_2,...,x_N)$ is amenable to a multivariate normal distribution from which the training images are identically independently drawn.}
+	
+	\newpage
+	
+% Page no - 10
+	\large{This distribution can be described by the following probability density function:}\\
+	\begin{center}
+		$ f(x_1,x_2,...,x_N) = \frac{1}{(2\pi)^{N/2}|\sum_{}^{}|^{1/2}}exp(-\frac{1}{2}(x-\mu)^T\sum_{}^{-1}(x-\mu))$\\
+	\end{center}
+	\large{where $\sum_{}^{}$ is the covariance matrix and $\mu$ is the expectation of $x$.\\
+	Eigenface decomposes $\sum_{}^{}$ using eigen decomposition as}
+	\begin{center}
+		$\sum_{}^{} = USU^T$\\
+	\end{center}
+	\large{where $U$ is a unitary matrix and $S = diag(s^2_1,s^2_2,...,s^2_N)$ is a diagonal matrix with all elements non-negative. Each column of $U, U_i,$ is called an Eigenface. A face image $x$ can be represented by $\mu$ and $U_i$ as}
+	\begin{center}
+		$x = \mu + \sum_{i}^{}a_iU_i$\\
+	\end{center}
+	\large{It can be shown that $\frac{a_i}{s_i}$ are i.i.d. standard normal variables. So the probability density function of $x$ is:}
+	\begin{center}
+		$f(x) = \prod_{i}^{}-\frac{1}{(2\pi)^{1/2}}exp(\frac{1}{2}\frac{a^2_i}{s^2_i}) = \frac{1}{(2\pi)^{N/2}}exp(-\frac{1}{2}\sum_{i}^{}\frac{a^2_i}{s^2_i})$\\
+	\end{center}
+	\large{Equation (2.4) can be used as a probability estimate and we can define a distance measure according to}
+	\begin{center}
+		$D = \sum_{i}^{}\frac{a^2_i}{s^2_i}$\\
+	\end{center}
+	\large{which is called normalized Euclidean distance. A large $D$ implies a small probability of being a face image and vice versa. Based on (2.5) Turk and Pentland [87] built a face detection system. Sung and Poggio's paper [82] used a similar idea, they assume images are produced by a mixture of Gaussian models: a face image Gaussian and a non-face image Gaussian. So they also estimate the probability of $x$ of being a non-face image $f'(x)$ and the final decision is made using a Bayesian classifier.}\\
+	\large{If we further assume $\sum_{}^{}$ is an identity matrix, (2.5) degenerates into Euclidean distance which means the probability density function is controlled by, $|x - \mu|^2$, the variation of the image from the average face $\mu$. This gives the simplest detection algorithm: template matching, i.e., finding a "face template" $\mu$, and then for each $x$ determine whether it is a face image by thresholding $|x - \mu|$.}
+	
+% Add Page 11 - 16
+	
+	\newpage
+	
 % Page no - 17
 	\begin{figure}%
 		\begin{subfigure}{0.5\textwidth}
@@ -185,7 +226,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\par 
 	Matsuno \textit{et al}. \cite{61} \cite{41} propose Potential Net to extract facial features. As shown in Fig.2.10, Potential Net is a two dimensional mesh of which nodes are connected to their four neighbors with springs, while the most exterior nodes are fixed to the frame of the Net. Similar to curve fitting, Potential Net considers two forces: each node in the mesh is driven
 
-% Pg 21 and 22
+% Add Page 21 - 22
 
 	\newpage
 
