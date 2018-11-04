@@ -232,10 +232,12 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 			-1  & \quad \text{otherwise}
 			\end{cases}
 	\]
+	\newpage
+	% Page no - 14
 	\par
 	This simple classifier is called a “stump”. We choose the three parameters $k_m$, $b_k$ and $f_k$ to minimize some objective function, for example weighted classification error. This
 	optimization can be done in two steps: for each$ Fk$ , find the best$ bk, fk $0and corresponding
-	weighted error $errk$; then choose $(km, bk, fk)$ which corresponds to the smallest$ errk$.}
+	weighted error $errk$; then choose $(km, bk, fk)$ which corresponds to the smallest$ errk$.
 	\subsubsection{Boosting Strong Classifier}
 	
 	\par
@@ -362,7 +364,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 		\caption{Detection Vs Alignment}
 	\end{figure}
 		
-		\section{Curve Fitting}
+		\subsection{Curve Fitting}
 		The basic problem of curve fitting is to locate the contour of an object in an image. Most
 		curve fitting methods (explicitly or implicitly) consider two “forces”: internal force (elastic
 		force) caused by deformation and external force (image force) caused by density gradient.
@@ -416,7 +418,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\noindent using a two-dimensional mesh, called Potential Net. All the above-mentioned methods are considered as holistic features, because they are related to the overall structure of the image. There is another kind of features called local features, each of which focuses only on a small region. The most straightforward idea may be to directly use image sub-windows as local features: for example, in \cite{15} Colmenarez \textit{ et al}. use nine sub-windows located around the facial components. Wavelet filters have been used too, the most popular of which is the Gabor filter which has been shown \cite{22} \cite{37} to be a reasonable model of visual processing in primary visual cortex. Yin and Wei use topographic primitive features to represent faces \cite{103}. In \cite{104}, instead of defining features ahead of time, Yu and Bhanu use a evolutionary algorithm to generate features automatically. For video-based FER, the dynamic of expression can also serve as features. \cite{44} proposes Geometric Deformation Feature which represents the geometrical displacement of certain selected landmark nodes. In \cite{1}, Aleksic and Katsaggelos use Facial Animation Parameters which are based on Active Shape Model.
 	\par In this section, we'll briefly introduce some of these feature extraction methods
 	\par
-	\section {Tensorface}
+	\subsection{Tensorface}
 	Tensorface \cite{90} is a multilinear extension of Eigenface. Instead of representing the face image using a linear equation.
 	\begin{equation}
 	x=\overline{x}+\sum_{i}a_i x_i
@@ -439,11 +441,52 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\caption{A partial visualization of TensorFaces bases for an ensemble of 2,700 facial images spanning 75 people, each imaged under 6 viewing and 6 illumination conditions \cite{92}}
 	\label{Fig 2.9}
 	\end{figure}
-	\section{Potential Net}
+	\subsection{Potential Net}
 	\par 
 	Matsuno \textit{et al}. \cite{61} \cite{41} propose Potential Net to extract facial features. As shown in Fig.2.10, Potential Net is a two dimensional mesh of which nodes are connected to their four neighbors with springs, while the most exterior nodes are fixed to the frame of the Net. Similar to curve fitting, Potential Net considers two forces: each node in the mesh is driven
 
-% Add Page 21 - 22
+	\newpage
+% Page no 21
+	by the external forces which come from the image gradient and the elastic forces of springs
+propagate local deformation throughout the Net. Eventually, equilibrium is reached, and
+the nodal displacements represent the overall pattern of facial image.
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/92_1.png}
+			\includegraphics[width=0.3\textwidth]{img/92_3.png}		
+		\end{center}
+		\caption{Structure of Potential Net and nodal deformation
+		\cite{61}}
+		\label{Fig 2.10}
+	\end{figure}
+	\subsection{Active Appearance Model}
+	\par
+	Cootes et al. propose Active Appearance Model \cite{17} to represent objects which have deformable shape as well as diverse textures. In Active Appearance Model, the shape variation, texture variation and their interdependence are modeled using three linear systems, respectively as depicted in Fig.2.11. The shape of the facial contour is coded into a shape vector $V_{shape}$ by applying Active Shape Model, then the texture is warped to have identical
+shape. This "shape-free texture" is converted into a texture vector $V_{texture}$ using PCA, finally $V_{texture}$ is concatenated with $V_{shape}$ and translated into AAM coeficient.\par
+AAM coeficient has fairly small dimensionality, normally 30-40 depending on the training parameters; also it is intuitive and easy to visualize. It has some limitations too, the
+major one is that AAM is purely linear, which means it is incapable of modeling nonlinear	variation of the facial image.\\
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=0.85\textwidth]{img/92_2.png}	
+			\end{center}
+			\caption{Active Appearance Model processing flow}
+			\label{fig 2.11}	
+		\end{figure}
+		\newpage
+% Page no - 22
+	\subsection{Sub-window Features}
+	In [15] the face is divided into nine facial features grouped in 4 regions, i.e., Right eyebrow, Left eyebrow, Eyes andNose and Mouth. The appearance of each facial feature is provided by the image sub-window located around its position. Fig.2.12 illustrates the four facial regions and the nine facial features.
+\section{Classifcation}
+\par
+A wide range of classiers have been applied to the automatic expression recognition prob-
+lem: In [61], Matsuno et al. classify expression by thresholding the Normalized Euclidean
+distance in the feature space. [15] implements a Bayesian recognition system where they nd the facial expression that maximizes the likelihood of a test image. Other meth-
+ods which have been used in facial expression recognition include Fisher discrimination
+analysis [77], Locally Linear Embedding [100], Higher Order Singular Value Decomposi-
+tion [95] and so on [103] [1] [44]. Among them the most successful ones are Neural Net-
+work [60] [106] [42] [34] and Support Vector Machine [102] [63] [4]. All the above-mentioned
+methods are widely-used in statical learning, so we only briefy introduce Support Vector
+Machine because it will be used in other systems.
 
 	\newpage
 

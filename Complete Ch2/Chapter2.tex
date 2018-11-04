@@ -1,0 +1,716 @@
+\documentclass[12pt, twoside]{report}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=0.8in,right=0.8in,top=1.2in,bottom=1.2in,%
+			]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[RO,LE]{\thepage}
+\pagestyle{fancy}
+\setcounter{chapter}{1}
+\begin{document}
+	\tableofcontents
+	
+	\newpage
+	
+% Page no - 5
+ 
+	\chapter{Background and Literature Review}
+	\large{The importance of facial expression in social interaction and social intelligence is widely recognized. Facial expression analysis has been an active research topic since 19th century. The first automatic facial expression recognition system was introduced in 1978 by Suwa et al. [83]. This system attempts to analyze facial expressions by tracking the motion of 20 identified spots on an image sequence. Since then, a lot of work has been done in this domain. Various computer systems have been made to help us understand and use this natural form of human communication.}\par
+	\large{This chapter reviews the state of the art of what has been done in processing and understanding facial expression. When building an FER system, these main issues must be considered: face detection and alignment, image normalization, feature extraction, and classification. Most of the current work in FER is based on methods that implement these steps sequentially and independently. Before exploring what has been done in literature for implementing these steps, we will briefly describe the problem space for facial expression analysis.}
+
+	\section{Problem Space for Facial Expression Analysis}
+	\subsection{Level of Description}
+	\large{In general there are two types of method to describe facial expression.}
+	
+	\newpage
+	
+% Page no - 6
+	\subsubsection{Facial Action Coding System}
+	\par 
+	\large{The facial action coding system [24] is a human-observer-based system widely used in psychology to describe subtle changes in facial features. FACS consists of 44 action units which are related to contraction of a specific set of facial muscles (Fig.2.1). Some of the action units are shown in Fig.2.2. Conventional, FACS code is manually labeled by trained observers while viewing videotaped facial behavior in slow motion. In recent years, some attempts have been made to do this automatically [69]. The advantage of FACS is its ability to capture the subtlety of facial expression, however FACS itself is purely descriptive and includes no inferential labels. That means in order to get the emotion estimation, the FACS code needs to be converted into the Emotional Facial Action System (EMFACS [28]) or similar systems.}\\
+
+	\begin{figure}[h]%
+		\begin{minipage}[t]{.5\textwidth}
+    		\centering
+    		\includegraphics[width=5cm]{img/10_1.jpeg}%
+			\caption{Muscles of facial expression. 1,
+				frontalis; 2, orbicularis oculi; 3, zygomaticus
+				major; 4, risorius; 5, platysma; 6, depressor
+				anguli oris [33]}
+		\end{minipage}
+		\begin{minipage}[t]{.5\textwidth}
+    		\includegraphics[width=7cm]{img/10_2.jpeg}%
+			\centering
+			\caption{FACS action units [35]}
+		\end{minipage}
+		\label{fig:example}%
+	\end{figure}
+
+	\newpage
+	
+% Page no 7
+\subsubsection{Prototypic Emotional Expressions}
+Instead of describing the detailed facial features, most FER systems attempt to recognize a small set of prototypic emotional expressions. The most widely-used set is perhaps human universal facial expressions of emotion which consists of six basic expression categories that have been shown to be recognizable across cultures \ref{fig:facialPhenotypes} .
+
+These expressions, or facial configurations have been recognized in people from widely divergent cultural and social backgrounds, and they have been observed even in the faces of individuals born deaf and blind.
+
+These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and anger plus ``neutral'' which means no facial expression are considered in this work. Given a facial image, our system either works as a conventional classifier to determine the most likely emotion or estimates the weights (or possibility) of each emotion as a fuzzy classifier does.
+
+	\begin{figure}[h!]
+    	\centering
+    	\includegraphics[width=0.5\textwidth]{img/12_1.png}
+    	\caption{Basic facial expression phenotypes. 1, disgust; 2, fear; 3, joy; 4, surprise; 5, sadness; 6, anger}
+    	\label{fig:facialPhenotypes}
+	\end{figure}
+
+	\section{System Structure}
+	FER can be considered as a special face recognition system or a module of a face recognition system. So it should be instructive to look at the general architecture of a face recognition system. Normally, it consists of four components as depicted in \ref{fig:processingFlow}
+
+% Page no 8
+	\begin{figure}[h]
+    	\centering
+    	\includegraphics[width=\textwidth]{img/12_2.png}
+    	\caption{Face recognition processing flow}
+    	\label{fig:processingFlow}
+	\end{figure}
+
+	Face detection finds the face areas in the input image. If the input is a video, to be more efficient and also to achieve better robustness, face detection is only performed on key frames and a tracking algorithm is applied on interval frames. Face alignment is very similar to detection, but it is aimed at achieving a more accurate localization. In this step, a set of facial landmarks (facial components), such as eyes, brows and nose, or the facial contour are located; based on that, the face image is rotated, chopped, resized and even warped, this is called geometrical normalization. Usually the face is further normalized with respect to photometrical properties such as illumination and gray scale.
+
+	Feature extraction is performed on a normalized face to provide effective information that should be useful for recognizing and classifying labels in which there is interest, such as identity, gender, or expression. The extracted feature vector is sent to a classifier and compared with the training data to produce a recognition output.
+
+	\section{Face Detection}
+	Face detection is the first step in face recognition. It has a major influence on the performance of the entire system. Several cues can be used for face detection, for example, skin color, motion (for videos), facial/head shape, and facial appearance. Most successful face detection algorithms are based on only appearance. This may be because
+
+	\newpage
+	
+	% Page no - 9
+	\large{appearance-based algorithms avoid difficulties in modeling 3D structures of faces. However, the variations of 3D structures due to facial expression and head pose actually heavily affect the facial appearance and make the face/non-face boundary highly complex [7]. To deal with this, a vast arrange of methods have been proposed since the 1990s.}\par
+	\large{Turk and Pentland [87] describe a detection system based on eigen decomposition which is also known as principal component analysis (PCA). In their method, an image is represented by an average face plus a set of weighted “eigenfaces”. Whereas only the face images are considered in eigenface, Sung and Poggio [82] also consider the distribution of non-face images and apply Bayes’ rule to obtain a likelihood estimation. Rowley et al. [72] use neural networks and Osuna et al. [68] trained a Kernel Support Vector Machine to classify face and non-face images. In these systems, a bootstrap algorithm is iteratively used to collect meaningful examples for retraining the detector.}\par
+	\large{Schneiderman and Kanade [75] use AdaBoost learning to construct a classifier based on wavelet representation of the image. This method is computationally expensive because of the wavelet transformation. To overcome this problem, Viola and Jones [93] replace wavelets with Haar features, which can be computed very efficiently [20] [80]. Their system is the first realtime frontal-view face detector [94].}\par
+	\large{Under Viola’s framework, some improvements have been proposed. Lienhart et al. [52] use rotated Haar features to deal with in-plane rotation. Li et al. [51] [50] [52] propose a multiview face detection system which can also handle out-of-plane rotation using a detector-pyramid.}\par
+	\large{In the following sections, we will describe two face detection algorithms: Eigenface is one of the simplest methods and Viola’s framework may be the most successful one. AdaBoost learning is an important component in Viola’s framework and this algorithm will also be useful in the feature extraction module, so our presentation focuses on this part.}
+			
+	\subsection{Eigenface and Template Matching}
+	\large{Eigenface assumes the face image $x = (x_1,x_2,...,x_N)$ is amenable to a multivariate normal distribution from which the training images are identically independently drawn.}
+	
+	\newpage
+	
+% Page no - 10
+	\large{This distribution can be described by the following probability density function:}\\
+	\begin{center}
+		$ f(x_1,x_2,...,x_N) = \frac{1}{(2\pi)^{N/2}|\sum_{}^{}|^{1/2}}exp(-\frac{1}{2}(x-\mu)^T\sum_{}^{-1}(x-\mu))$\\
+	\end{center}
+	\large{where $\sum_{}^{}$ is the covariance matrix and $\mu$ is the expectation of $x$.\\
+	Eigenface decomposes $\sum_{}^{}$ using eigen decomposition as}
+	\begin{center}
+		$\sum_{}^{} = USU^T$\\
+	\end{center}
+	\large{where $U$ is a unitary matrix and $S = diag(s^2_1,s^2_2,...,s^2_N)$ is a diagonal matrix with all elements non-negative. Each column of $U, U_i,$ is called an Eigenface. A face image $x$ can be represented by $\mu$ and $U_i$ as}
+	\begin{center}
+		$x = \mu + \sum_{i}^{}a_iU_i$\\
+	\end{center}
+	\large{It can be shown that $\frac{a_i}{s_i}$ are i.i.d. standard normal variables. So the probability density function of $x$ is:}
+	\begin{center}
+		$f(x) = \prod_{i}^{}-\frac{1}{(2\pi)^{1/2}}exp(\frac{1}{2}\frac{a^2_i}{s^2_i}) = \frac{1}{(2\pi)^{N/2}}exp(-\frac{1}{2}\sum_{i}^{}\frac{a^2_i}{s^2_i})$\\
+	\end{center}
+	\large{Equation (2.4) can be used as a probability estimate and we can define a distance measure according to}
+	\begin{center}
+		$D = \sum_{i}^{}\frac{a^2_i}{s^2_i}$\\
+	\end{center}
+	\large{which is called normalized Euclidean distance. A large $D$ implies a small probability of being a face image and vice versa. Based on (2.5) Turk and Pentland [87] built a face detection system. Sung and Poggio's paper [82] used a similar idea, they assume images are produced by a mixture of Gaussian models: a face image Gaussian and a non-face image Gaussian. So they also estimate the probability of $x$ of being a non-face image $f'(x)$ and the final decision is made using a Bayesian classifier.}\\
+	\large{If we further assume $\sum_{}^{}$ is an identity matrix, (2.5) degenerates into Euclidean distance which means the probability density function is controlled by, $|x - \mu|^2$, the variation of the image from the average face $\mu$. This gives the simplest detection algorithm: template matching, i.e., finding a "face template" $\mu$, and then for each $x$ determine whether it is a face image by thresholding $|x - \mu|$.}
+	
+	\newpage
+
+% Page no - 11
+	\subsection{Viola's Framework}
+	\par
+	Almost all the state of the art face detection systems are developed upon Viola’s Framework, based on AdaBoost and Haar features. The philosophy of AdaBoost is that if it is hard to find a good (strong) classifier directly, we can construct a lot of poor quality ones (weak classifier) $h_m (x) ,m = 1, . . . , M$ and use the combination of them to form a strong classifier [27]:
+
+	\begin{equation}
+		H_M(x) = \frac{\sum_m{a_mh_m(x)}}{\sum_M{a_m}}
+	\end{equation}
+
+	where $a_m ≥ 0$ are the combining coefficients. In the discrete version $h_m(x)$ gives either $−1$
+	or $1$ whereas in the real version, the output can be a real number. Because we need a lot of weak classifiers, $h_m(x)$ is normally chose to have a simple form (so it is easy to construct). In Viola and Jones’s work, they use threshold classifiers, each of which works on one feature selected from an over-complete set of Haar wavelet-like features. We’ll first introduce Haar Wavelet, then give the iterative algorithm of AdaBoost.
+
+	\subsubsection{Haar Wavelet}
+
+	\par
+	Wavelet analysis is a tool for signal processing which can perform local analysis. It is useful in face detection because we want to focus on a localized area of the image and find whether it contains a face. Haar wavelet is the first known wavelet, and probably the simplest one. A one-dimensional Haar wavelet function is just a step function, as shown in Fig.2.5(a).
+
+	\par
+	In image processing, two-dimensional wavelets are used which look like the ones in Fig.2.5(b). The functions in Fig.2.5(b) don’t satisfy some conditions of a wavelet (because we don’t need those in our application), so strictly speaking they are ``Haar-like features''. An important property of Haar wavelet-like features is that they can be computed efficiently using an integral image. The integral image $II(x, y)$ of image $I(x, y)$ is
+	defined by:
+
+	\begin{equation}
+		II(x, y) = \sum_{x' < x, y' < y}{I(x' , x')}
+	\end{equation}
+
+	\newpage
+	% Page no - 12
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics{img/25_1.png}
+		\caption{1-dimensional Haar Wavelet function}
+		\label{fig:25_sub1}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics{img/25_2.png}
+		\caption{Four types of 2-d Haar wavelet-like features}
+		\label{fig:25_sub2}
+		\end{subfigure}
+		\caption{Haar Wavelet and Haar features}
+		\label{fig:25}
+	\end{figure}
+
+	\par
+	This can be computed in one pass over the original image as follows:
+
+	\begin{equation}
+		S(x, y) = S(x, y - 1) + I(x, y)
+	\end{equation}
+
+	where $S(x, y)$ is the cumulative sum of the $x$th row. Apparently $S(x, 0) = 0$ and $II(0, y) = 0$. Any rectangular sum in an image can be expressed in terms of its integral image as illustrated in \ref{fig:29}
+
+	\par
+	The sum of the pixels within rectangle $D$ in \ref{fig:29} can be computed using the integral image value on points $a, b, c, d$ as follows:
+
+	\begin{equation}
+		II(x2, y2) = \sum_{x<x2, y<y2}{I(x, y)} = A + B + C + D
+	\end{equation}
+
+	\begin{equation}
+		II(x2, y1) = \sum_{x<x2, y<y1}{I(x, y)} = A + C
+	\end{equation}
+
+	\begin{equation}
+		II(x1, y2) = \sum_{x<x1, y<y2}{I(x, y)} = A + B
+	\end{equation}
+
+	\begin{equation}
+		II(x1, y1) = \sum_{x<x2, y<y2}{I(x, y)} = A
+	\end{equation}
+
+	\begin{equation}
+		D = II(x2, y2) + II(x1, y1) - II(x2, y1) - II(x1, y2)
+	\end{equation}
+
+	\newpage
+% Page no. - 13
+	\begin{figure}
+		\centering
+		\includegraphics{img/13_1.png}
+		\caption{Compute rectangle sum using integral image}
+		\label{fig:29}
+	\end{figure}
+	
+	\par
+	The use of integral images leads to enormous savings and makes it possible to use Haar
+	wavelets in a real-time detection system.
+	\subsubsection{Constructing Weak Classifier}
+	
+	\par
+	In Viola’s Framework, ``the AdaBoost learning procedure is used to solve the following
+	three fundamental problems: 1) learning effective features from a large feature set; 2)
+	constructing weak classifiers, each of which is based on one of the selected features; and
+	3) boosting the weak classifiers to construct a strong classifier''. We’ll talk about the
+	first in this section.Suppose a set of N labeled training examples $(x1, y1), . . . ,(xN , yN )$ is given, where
+	$yi = {1, −1} $is the label of image $xi$. We also assume a weight$ wi$ is assigned to each example, and how to compute this weight will be given in the next section. $K$ Haar features $F_k, k = 1, 2, . . . K$ can be computed for each image; in Viola’s detection system constructing a weak classifier means determining a feature Fkm, a direction $bm = {1, −1}$ and a threshold $f_m$:
+	\[
+		h_m = \begin{cases}
+			+1  & \quad \text{$if (F_{k_m} - f_m) b_m > 0$} \\
+			-1  & \quad \text{otherwise}
+			\end{cases}
+	\]
+	\newpage
+	% Page no - 14
+	\par
+	This simple classifier is called a “stump”. We choose the three parameters $k_m$, $b_k$ and $f_k$ to minimize some objective function, for example weighted classification error. This
+	optimization can be done in two steps: for each$ Fk$ , find the best$ bk, fk $0and corresponding
+	weighted error $errk$; then choose $(km, bk, fk)$ which corresponds to the smallest$ errk$.
+	\subsubsection{Boosting Strong Classifier}
+	
+	\par
+	AdaBoost iteratively learns a sequence of weak classifiers$ hm$ and constructs a strong one$
+	HM$ using their linear combination. In each cycle AdaBoost does two things: find the best
+	linear combination coefficients, and update the sample weights. Both of these tasks are
+	based on the upper bound on classification error of$ HM$. [74] shows that the bound can be
+	derived from the following exponential loss function:
+	
+	\begin{equation}
+	J(Hm)=\sum  e^{-y_iH_m(x_i)} =\sum e^{-yi \sum a_m h_m(x_i)} 
+	\end{equation}
+	
+	Given the current strong classifier $H_(m-1)(x)=\sum a_m h_m (x)$ and the newly learned
+	weak classifier $hM$, the best combining coefficient$ aM$ is the minimizer of the following
+	optimization problem:
+	
+	\begin{equation}
+	a_M = argminJ(H_(m-1)(x)+ah_m(x))
+	\end{equation}
+	
+	\begin{equation}
+	a_M=\log (1-err_M ) /err_M  
+	\end{equation}
+	
+	where $err_M$ is the weighted error of $h_M$ defined as
+	
+	\begin{equation}
+	err_M=\sum w_i^(M-1)(sgn(h_M(x))-y_i)/2
+	\end{equation}
+	
+	Equation (2.17) suggests if the new weak classifier has a good performance (small $err_M$),
+	we’ll give it a large $a_M$; otherwise it will be assigned a small coefficient.
+	To update the weight of each training sample, let’s rewrite (2.16) as follows:
+	
+	\begin{equation}
+	J(H_m)=\sum e^-y_i \sum a_m h_m (x)
+	\end{equation}
+	
+	\newpage
+% Page no. - 15
+	\par
+	Equation (2.19) means the contribution in $J(H_M)$ of the $i$th example is the error of $h_M(x)$ on $x_i$, $e^{-y_ia_Mh_M(x_i)}$, multiplied by $e^{-y_iH_{(M-1)}(x_i)}$. So we can define the weight of the $i$th example after the $M$th iteration as:
+	\begin{equation}
+		w^{(M)}(x_i) = e^{-y_iH_M(x_i)}
+	\end{equation}
+
+	\par
+	Intuitively this is saying if the current strong classifier already can classify an example $x_i$ correctly, then it doesn’t really matter what performance the new weak classifier can achieve on $x_i$; on the other hand, we can expect $h_M(x)$ to fix this problem.
+
+	\par	
+	So the updated formula of $w^{(m)}(x_i)$ is:
+
+	\begin{equation}
+		w^{(M)}(x_i) = w^{(M-1)}(x_i)e^{-y_ia_Mh_M(x_i)}
+	\end{equation}
+
+	\par	
+	Usually, the training set is unbalanced—the number of training images with $y_i$= 1 is larger(smaller) than the number of images with $y_i$=$-1$. In such cases, the $y_i$=1 ($y_i$=$-1$) set will dominate the training process. To eliminate this assymetry, one way is to initialize the sample weights such that:
+
+	\begin{equation}
+		\sum_{i}w_i^{(0)} y_i = 0
+	\end{equation}
+
+	\par
+	The algorithm is summarized in Alg.1.
+	
+	\section{Face Alignment}
+	The aim of face alignment is to achieve more accurate localization of the face, and usually the facial components (feature points). A typical result of face detection and face alignment is compared in Fig.2.7. As we can see, detection considers the images in terms of areas whereas alignment has a precision of pixels.
+	\par
+	Various algorithms have been proposed since 1990's. Gu \textit{ et al}. \cite{29} use histogram information to localize mouth corners and eye corners. In \cite{26}, Ian and Marian implement a preliminary alignment system using Gabor filter to detect pupils and philtrum. Curve fitting algorithms, especially Active Shape Model \cite{18} and its offspring may be the most successful alignment methods nowadays. Cootes \textit{ et al}. \cite{18} \cite{45} \cite{16} propose Active Shape Model and apply it to face image. After that, ASM is widely used in face image processing; a great amount of effort has been made to improve its speed, accuracy and robustness. In \cite{36} the Active Shape Model is combined with the Gabor filter;
+% Page No. - 16
+	Li \textit{ et al}. \cite{78} propose Direct Appearance Model; \cite{56} and \cite{101} enhance ASM by using 2-D local textures feature for local search. 
+
+	\par
+	This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model. \\ 
+	\textbf{Input:} \\
+	\par Training examples Z={(x1,y1),...,(xn,yn)}, where N=a+b, of which a examples have $y_i$=1 and b examples have $y_i$=$-1$ \\
+	\par The number M of weak classifiers to be combined.
+
+	\textbf{Initialization:} \\
+	\[
+		w_i^{0}= \begin{cases}
+			\frac{1}{2a}  & \quad \text{for those examples with yi=1} \\
+			\frac{1}{2b}  & \quad \text{otherwise}
+			\end{cases}
+	\]
+	\textbf{end}\\
+	\textbf{Forward Inclusion:} \\
+
+	for m=1, ..., M do \\
+	\par \{
+	\par choose optimal $h_M$ to minimize the weighted error \\
+	\par choose $a_m$ according to (2.17) \\
+	\par update $w_i^{m} \leftarrow w_i^{(M-1)}e^{-y_ia_Mh_M(x_i)}$ and normalize to $\displaystyle\sum_{i}w_i^{(m)}=1$  \\
+	\par \}
+	\par end \\
+	end \\
+	\par 
+	\textbf{Output:} \\
+	\par Classification function: $H_M(x)$ as in 2.20 \\
+	\par Class label prediction:$y(x) = sgn(H_M(x))$
+
+	\begin{center}
+		Algorithm 1: AdaBoost learning algorithm \cite{35}
+	\end{center}
+
+	\newpage
+	
+% Page no - 17
+	\begin{figure}%
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth, height=0.8\linewidth]{img/17_1.png}
+		\caption[label a]{Face Detection [35]}
+		\label{fig:test1}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth, height=0.8\linewidth]{img/17_2.png}
+		\caption[label b]{Face Alignment [56]}
+		\label{fig:test2}
+		\end{subfigure}
+		\caption{Detection Vs Alignment}
+	\end{figure}
+		
+		\subsection{Curve Fitting}
+		The basic problem of curve fitting is to locate the contour of an object in an image. Most
+		curve fitting methods (explicitly or implicitly) consider two “forces”: internal force (elastic
+		force) caused by deformation and external force (image force) caused by density gradient.
+		As in physics, both internal force and external force cause potential energy, and the curve
+		fitting is achieved by minimizing the overall energy functional (Fig.2.8).
+		
+		In general, a contour can be represented by c = c(s), parameterized by its arc length,
+		s. The energy function can be expressed by:
+		\begin{equation}
+			\varepsilon = E_{elastic}(c) + E_{image}(c) = \int\limits_c (a(s)e_{elastic}(c,s) + b(s)e_{image}(c,s))ds
+		\end{equation}
+		
+		So the optimization problem can be expressed as
+		\begin{equation}
+			\underset{c}{\arg\min}E_{elastic} + E_{image}(c)
+		\end{equation}
+		
+		Usually, (2.24) is solved using iterative searching algorithms. A large number of curve
+		fitting methods have been proposed using a wide range of energy functions and searching
+		schemes.
+	\newpage
+	
+% Page no - 18
+	\begin{figure}[h!]
+		\centering
+	\includegraphics[width=\textwidth]{img/18_1.png}     
+		\caption{Energy function and curve fitting}
+		\label{fig:face}
+	\end{figure}
+
+	\paragraph{}
+	It’s worth pointing out that sometimes the energy function is not explicitly given,
+	instead it’s implicitly defined in the searching scheme, for example, in Active Shape Model.
+
+	\section{Feature Extraction}
+	“Feature extraction converts pixel data into a higher-level representation of shape, motion,
+	color, texture, and spatial configuration of the face or its components. The extracted
+	representation is used for subsequent classification. Feature extraction generally reduces
+	the dimensionality of the input space. The reduction procedure should (ideally) retain
+	essential information possessing high discrimination power and high stability” [14]. In the
+	face recognition area, various features have been used.
+
+	The coefficients of Eigenface can be used as features and recently, an extension of
+	Eigenface [90] defines Tensorface which has shown a promising choice of feature. Active
+	Appearance Model [17] decomposes the facial image into “shape” and “texture”. The shape
+	vector which is coded using ASM describes the contour of the facial components, whereas
+	the texture vector gives the “shape-free” facial texture. Matsuno et al. [41] extract features
+	\newpage
+
+% Page no - 19
+	\noindent using a two-dimensional mesh, called Potential Net. All the above-mentioned methods are considered as holistic features, because they are related to the overall structure of the image. There is another kind of features called local features, each of which focuses only on a small region. The most straightforward idea may be to directly use image sub-windows as local features: for example, in \cite{15} Colmenarez \textit{ et al}. use nine sub-windows located around the facial components. Wavelet filters have been used too, the most popular of which is the Gabor filter which has been shown \cite{22} \cite{37} to be a reasonable model of visual processing in primary visual cortex. Yin and Wei use topographic primitive features to represent faces \cite{103}. In \cite{104}, instead of defining features ahead of time, Yu and Bhanu use a evolutionary algorithm to generate features automatically. For video-based FER, the dynamic of expression can also serve as features. \cite{44} proposes Geometric Deformation Feature which represents the geometrical displacement of certain selected landmark nodes. In \cite{1}, Aleksic and Katsaggelos use Facial Animation Parameters which are based on Active Shape Model.
+	\par In this section, we'll briefly introduce some of these feature extraction methods
+	\par
+	\subsection{Tensorface}
+	Tensorface \cite{90} is a multilinear extension of Eigenface. Instead of representing the face image using a linear equation.
+	\begin{equation}
+	x=\overline{x}+\sum_{i}a_i x_i
+	\end{equation}
+	It models the face by a multilinear system which is equivalent to
+	\begin{equation}
+	x=\overline{x}+\sum_{i_1}...\sum_{i_1}a_{i_N}...a_{i_N} x_{i_1}..._{i_N}
+	\end{equation}
+	\par 
+	Compared to Eigenface which ignores the label of images, Tensorface analyzes a face ensemble with respect to its underlying factors(labels): for example, identities, views, and illuminations. The "principal components" in this multilinear system are referred to as Tensorfaces which are shown in Fig.2.9. The Tensorface coefficients a$_{i_k}$ can be used as features in a recognition task, and because the original image can be reproduced using 2.26, Tensorface coefficients can also be used for image synthesis where we first generate a set of coefficients, then use them to synthesize images.
+
+% Page no - 20
+	\newpage
+
+	\par
+	Since Tensorface is shown to be a promising method in face recognition, some improvements have been proposed. \cite{92} proposes Multilinear Independent Component Analysis where they try to find the independent directions of variation. In \cite{76} Shashua et al. introduce Non-Negative Tensor Factorization which is a generalization of Non-negative Matrix Factorization.
+	\par 
+	\begin{figure}
+	\includegraphics[width=\textwidth]{img/20_1.png}
+	\caption{A partial visualization of TensorFaces bases for an ensemble of 2,700 facial images spanning 75 people, each imaged under 6 viewing and 6 illumination conditions \cite{92}}
+	\label{Fig 2.9}
+	\end{figure}
+	\subsection{Potential Net}
+	\par 
+	Matsuno \textit{et al}. \cite{61} \cite{41} propose Potential Net to extract facial features. As shown in Fig.2.10, Potential Net is a two dimensional mesh of which nodes are connected to their four neighbors with springs, while the most exterior nodes are fixed to the frame of the Net. Similar to curve fitting, Potential Net considers two forces: each node in the mesh is driven
+
+	\newpage
+% Page no 21
+	by the external forces which come from the image gradient and the elastic forces of springs
+propagate local deformation throughout the Net. Eventually, equilibrium is reached, and
+the nodal displacements represent the overall pattern of facial image.
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{img/92_1.png}
+			\includegraphics[width=0.3\textwidth]{img/92_3.png}		
+		\end{center}
+		\caption{Structure of Potential Net and nodal deformation
+		\cite{61}}
+		\label{Fig 2.10}
+	\end{figure}
+	\subsection{Active Appearance Model}
+	\par
+	Cootes et al. propose Active Appearance Model \cite{17} to represent objects which have deformable shape as well as diverse textures. In Active Appearance Model, the shape variation, texture variation and their interdependence are modeled using three linear systems, respectively as depicted in Fig.2.11. The shape of the facial contour is coded into a shape vector $V_{shape}$ by applying Active Shape Model, then the texture is warped to have identical
+shape. This "shape-free texture" is converted into a texture vector $V_{texture}$ using PCA, finally $V_{texture}$ is concatenated with $V_{shape}$ and translated into AAM coeficient.\par
+AAM coeficient has fairly small dimensionality, normally 30-40 depending on the training parameters; also it is intuitive and easy to visualize. It has some limitations too, the
+major one is that AAM is purely linear, which means it is incapable of modeling nonlinear	variation of the facial image.\\
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=0.85\textwidth]{img/92_2.png}	
+			\end{center}
+			\caption{Active Appearance Model processing flow}
+			\label{fig 2.11}	
+		\end{figure}
+		\newpage
+% Page no - 22
+	\subsection{Sub-window Features}
+	In [15] the face is divided into nine facial features grouped in 4 regions, i.e., Right eyebrow, Left eyebrow, Eyes andNose and Mouth. The appearance of each facial feature is provided by the image sub-window located around its position. Fig.2.12 illustrates the four facial regions and the nine facial features.
+\section{Classifcation}
+\par
+A wide range of classiers have been applied to the automatic expression recognition prob-
+lem: In [61], Matsuno et al. classify expression by thresholding the Normalized Euclidean
+distance in the feature space. [15] implements a Bayesian recognition system where they nd the facial expression that maximizes the likelihood of a test image. Other meth-
+ods which have been used in facial expression recognition include Fisher discrimination
+analysis [77], Locally Linear Embedding [100], Higher Order Singular Value Decomposi-
+tion [95] and so on [103] [1] [44]. Among them the most successful ones are Neural Net-
+work [60] [106] [42] [34] and Support Vector Machine [102] [63] [4]. All the above-mentioned
+methods are widely-used in statical learning, so we only briefy introduce Support Vector
+Machine because it will be used in other systems.
+
+	\newpage
+
+% Page no - 23
+	\begin{figure}
+		\centering \includegraphics[totalheight=8cm]{img/93_1.png}
+		\caption{Figure 2.12: Scheme of the Facial Features and Regions [15]}
+		\label{Fig 2.12}
+	\end{figure}
+	\subsection{Support Vector Machine}
+	\large{Support Vector Machine attempts to construct a linear classifier which maximizes the margin between two classes, so it’s also known as Optimal Margin Classifier [9]. Fig.2.13 gives an SVM classifier where $\frac{1}{|w|}$ gives the margin and samples along the hyper-planes are called the support vectors.}
+	\par
+	\large{It has been proven that SVM minimizes the Structural Risk Function which is considered as a better error estimation than the normallyused Empirical Risk Function in terms of generalization capacity.}
+	\par
+	\large{We consider data points of the form: $\{(x_1,y_1),...,(x_n,y_n)\}$ where $y_i$ is either 1 or -1, a label denoting the class to which the point $x_i$ belongs. The basic version of SVM can be written as}
+	\newline
+	\begin{center}
+		$argmax\hspace{0.7cm}\frac{1}{||w||}$\\
+		$\hspace{4.4cm}s.t.\hspace{0.6cm}y_i(x^Tw-b_0)\ge1,\hspace{0.3cm}\forall i$
+	\end{center}
+	
+	\newpage
+% Page no - 24
+	\begin{figure}
+		\centering \includegraphics[totalheight=8cm]{img/93_2.png}
+		\caption{Figure 2.13: Maximum-margin hyper-planes for a SVM trained with samples from two classes [99]}
+		\label{Fig 2.13}
+	\end{figure}
+	\vspace{0.5cm}
+	\large{$||...||$ in (2.27) can be replaced by any distance measure. If norm-2 is used, the problem is equivalent to}
+	\begin{center}
+		$argmin\hspace{0.7cm}\frac{1}{2}||w||^2$\\
+		$\hspace{4.4cm}s.t.\hspace{0.6cm}y_i(x^Tw-b_0)\ge1,\hspace{0.3cm}\forall i$
+	\end{center}
+	\large{Equation (2.28) is a quadratic programming and according to the strong duality theorem it can be converted to:}
+	\begin{center}
+		$argmax\hspace{0.7cm}\sum_{i}^{}\alpha_i-\frac{1}{2}\sum_{i}^{}\sum_{j}^{}\alpha_i\alpha_jy_iy_jx^T_ix_j$\\
+		$\hspace{-2.5cm}s.t.\hspace{0.6cm}\alpha_i\ge0,\hspace{0.3cm}\forall i$
+	\end{center}
+	\large{which is called the dual problem of (2.28).In practice, we always use (2.29) as it is easier to handle numerically. Moreover, in (2.29) all the computation of x i is written in terms of inner product, and that means it can be generalized to a nonlinear case by employing Kernel technique.}
+		
+	\newpage
+% Page no - 25		
+	\section{Face Database}
+	"Because of its non rigidity and complex three-dimensional structure, the appearance of a face is affected by a large number of factors including identity, face pose, illumination, facial expression, age, occlusion, and facial hair. The development of algorithms robust to these variations requires databases of sufficient size that include carefully controlled variations of these factors. Furthermore, common databases are necessary to comparatively evaluate algorithms. Collecting a high quality database is a resource-intensive task: but the availability of public face databases is important for the advancement of the field" [35]. In this section we briefly review some publicly available databases for face recognition, face detection, and facial expression analysis, and we'll mainly focus on the three databases which we will use in this thesis. 
+	\par
+	To facilitate this statement, we divide face databases into two categories according to their designing goals. In the first part, we'll introduce databases which are normally used for face recognition; those which are dedicated to expression recognition will be discussed in the second part. As only a few databases are of the second type, and FER system shares some common modules with identity recognition system, in this work we also use some databases of the first type.
+
+	\subsection{Databases For Identity Recognition}
+	Most face databases are of this category (Table.2.1). To test for robustness, some of them are captured under different poses, illuminations and expressions. However, because they're mainly designed for identity recognition, the expressions are added as noise and usually not well controlled. So in general these databases are considered not suitable for FER research. In our work, we only use them to train peripheral modules (processing and Feature Extraction).
+
+	\section*{The IMM Face Database [66]}
+	The IMM Face Database comprises 240 still images of 40 individuals (7 females and 33 males), all without glasses. For each person, 6 images are provided:
+
+
+	\newpage
+% Page no - 26
+	\begin{table}
+	\caption{Some of the most popular Face Recognition Databases [35] }
+	\centering
+	\resizebox{14cm}{!}{
+		\begin{tabular}{|c||c|c|c|c|}\hline
+  			Database & No. of subjects & Pose & Illumination &Facial Expressions\\ \hline\hline
+			AR & 116 & 1 & 4 & 4\\\hline
+			BANCA & 208 & 1 & ++ & 1\\\hline
+			CAS-PEAL & 66-1040 & 21 & 9-15 & 6\\\hline
+			CMU HYPER & 54 & 1 & 4 & 1\\\hline
+			CMU PIE & 54 & 1 & 4 & 1\\\hline
+			Equinox IR & 91 & 1 & 3 & 3\\\hline
+			FERET & 1199 & 9-20 & 2 & 2\\\hline
+			Harvard RL & 10 & 1 & 77-84 & 1\\\hline
+			IMM FACE & 40 & 3 & 2 & 3+\\\hline
+			KFDB & 1000 & 7 & 16 & 5\\\hline
+			MIT & 15 & 3 & 3 & 1\\\hline
+			MPI & 200 & 3 & 3 & 1\\\hline
+			ND HID & 300+ & 1 & 3 & 2\\\hline
+			NIST MID & 1573 & 2 & 1 & ++\\\hline
+			ORL & 10 & 1 & ++ & ++\\\hline
+			UMIST & 20 & ++ & 1 & ++\\\hline
+			U.Texas & 284 & ++ & 1 & ++\\\hline
+			U. Oulu & 125 & 1 & 16 & 1\\\hline
+			XM2VTS & 295 & ++ & 1 & ++\\\hline
+			Yale & 15 & 1 & 3 & 6\\\hline
+			Yale B & 10 & 9 & 64 & 1\\\hline
+  
+			\hline
+		\end{tabular}
+  	}
+	\label{2.1}
+	\end{table}
+
+
+	\begin{itemize}
+		\item Frontal face, neutral expression, diffuse light.
+		\item Frontal face, happy expression, diffuse light.
+		\item Face rotated approx. 30 degrees to the person’s right, neutral expression, diffuse light.
+		\item Face rotated approx. 30 degrees to the person’s left, neutral expression, diffuse light.
+	\end{itemize}
+
+	\newpage
+	%\onehalfspacing
+	
+% Page no - 27
+	\begin{itemize}
+		\item Frontal face, neutral expression, spot light added at the person’s left side.
+		\item Frontal face, “joker image” (arbitrary expression), diffuse light.
+	\end{itemize}
+	\qquad The images are stored in 640 × 480 JPEG files. Owing to technique problems, most images are RGB, but some are grey-scale [66]. One good thing about this database is that manually labeled face contour is available. The following facial structures were annotated using 58 landmarks: eyebrows, eyes, nose, mouth and jaw. These landmarks are divided into seven point paths; three closed and four open as shown in Fig.2.14. In our work, this database will be used to train the ASM and AAM model.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{img/98_1.png}
+		\caption{Example image from IMM face database}
+	\end{figure}
+	\vspace{0.5cm}
+	\noindent \textbf{CMU Pose, Illumination, and Expression Database [79]} \vspace{0.3cm} \\
+	The CMU-PIE database is among the most comprehensive databases in this area. It systematically samples a large number of pose and illumination conditions along with a variety of facial expressions. The PIE database was captured under 21 illuminations (lit by 21 flashes) from 13 directions (using 13 synchronized cameras). In total, there are 41,368 images obtained from 68 individuals. In our experiment, we only use a sub-set of this database which consists of images of 62 people. 25 images were selected for each individual
+	
+	\pagebreak
+	
+% Page no - 28	
+	\noindent with 5 different viewpoints and 5 different illuminations. Part of the data set is shown in Fig.2.15.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{img/98_2.png}
+		\caption{A subset of CMU PIE database [53]}
+	\end{figure}
+	\vspace{0.5cm}
+	
+	\noindent \textbf{\large \subsection{Databases for Expression Recognition}} \vspace{0.3cm}
+	"The human face is able to display an astonishing variety of expressions. Collecting a database that samples this space in a meaningful way is a difficult task" [35]. As a result, there are many fewer databases available for expression recognition (Table 6.1). As mentioned in 2.1.1, there are two ways to describe facial expressions. Available databases can be categorized into two classes according to the description they used. In one group [38] expressions are coded in FACS, while in the other group [57] images are labeled by their sprototypic emotional expressions.
+	\vspace{0.1cm} \\
+	
+	\noindent \textbf{Japanese Female Facial Expression Database [57]}
+	\vspace{0.3cm} \\
+	The JAFFE database contains 213 images of 10 Japanese female models. Their images are labeled by emotions: six basic emotions (anger, disgust, fear, joy, happy, sad and surprise) are considered and “Neutral” is added as the 7th emotion which is defined through the absence of expression. Fig.2.16 shows example images for one subject along with emotion
+
+	\newpage
+	
+% Page no - 29
+	\begin{table}
+		\caption{Commonly used expression recognition databases [35] }
+  		\centering
+  		\resizebox{14cm}{!}{
+  			\begin{tabular}{c||l|c|c|c}
+  				Database & No. of subjects & No. of Expressions & 						Image Resolution & Video/Image\\ \hline\hline
+  				JAFFE & 10 & 7 & 256 X 256 & Image\\\hline
+  				U. Maryland & 40 & 6 & 560 X 240 & Video\\\hline
+  				Cohn-Kanade & 100 & 23 & 640 X 480 & Video\\\hline
+  			\end{tabular}
+  		}
+	\end{table}
+
+	labels. The images were originally printed in monochrome and then digitized using a flatbed scanner.
+	
+	\begin{figure}
+		\includegraphics[width=\textwidth]{img/94_1.jpg}
+		\caption{Example images from JAFFE database[35]}
+		\label{Fig 2.16}
+	\end{figure}
+	\section{Chapter Summary}
+	\par
+	In this chapter, we first talked about the background of facial analysis, then gave an overview of the development in this area, and we also briefly introduced some state of the art techniques which might be useful for our system. At the end, we had a glance at some face databases for identity and expression recognition. Starting in the next chapter, we'll discuss the design of our FER system.
+
+
+	\begin{thebibliography}{9}
+		\bibitem{1}
+			P. Aleksic and A. Katsaggelos. Automatic facial expression 				recognition using facial animation parameters and multistream 			hmms. Information Forensics and Security, IEEE Transactions 			on, 1:3–11, March 2006.
+			
+		\bibitem{15} 
+			A. Colmenarez, B. Frey, and T. S. Huang. A probabilistic 				framework for embedded face and facial expression recognition. 		pages 592–597.
+	
+		\bibitem{22} 
+			R. De-Valois and K. De-Valois. Spatial Vision. Oxford Univ. 			Press, New York, 1990.
+	
+		\bibitem{37} 
+			J. Jones and L. Palmer. An evaluation of two-dimensional gabor 		filter model of simple receptive fields in cat striate cortex. 		Journal of Neurophysiology, 58(6):1233–1258,1987.
+		\bibitem{41}
+			S. Kimura and M. Yachida. Facial expression recognition and 			its degree estimation. In CVPR ’97: Proceedings of the 1997 			Conference on Computer Vision and Pattern Recognition (CVPR 			’97), page 295, Washington, DC, USA, 1997. IEEE Computer 				Society.	
+		\bibitem{44}
+			I. Kotsia and I. Pitas. Facial expression recognition in image 		sequences using geometric deformation features and support 				vector machines. IEEE Transactions on Image Processing, 16(1):			172–187, 2007.
+		\bibitem{61}
+			K. Matsuno, C.-W. Lee, S. Kimura, and S. Tsuji. Automatic 				recognition of human facial expressions. In ICCV ’95: 					Proceedings of the Fifth International Conference on Computer 			Vision, page 352, Washington, DC, USA, 1995. IEEE Computer 				Society.		
+		
+		\bibitem{76}
+			A. Shashua and T. Hazan. Non-negative tensor factorization 				with applications to statistics and computer vision. In ICML 			’05: Proceedings of the 22nd international conference on 				Machine learning, pages 792–799, New York, NY, USA, 2005. ACM.	
+		\bibitem{90}
+			M. A. O. Vasilescu and D. Terzopoulos. Multilinear analysis of 		image ensembles: Tensorfaces. In ECCV (1), pages 447–460, 				2002.
+		\bibitem{92}
+			M. A. O. Vasilescu and D. Terzopoulos. Multilinear independent 		components analysis. In CVPR ’05: Proceedings of the 2005 IEEE 		Computer Society Conference on Computer Vision and Pattern 				Recognition (CVPR’05) - Volume 1, pages 547–553, Washington, 			DC, USA, 2005. IEEE Computer Society.
+		\bibitem{103}
+			L. Yin and X. Wei. Multi-scale primal feature based facial 			expression modeling and identification. In FGR ’06: 					Proceedings of the 7th International Conference on Automatic 			Face and Gesture Recognition, pages 603–608, Washington, DC, 			USA, 2006. IEEE Computer Society.
+		\bibitem{104}
+		J. Yu and B. Bhanu. Evolutionary feature synthesis for facial 			expression recognition. Pattern Recogn. Lett., 27(11):1289–				1298, 2006.
+		\bibitem{16}
+		T. Cootes, C. Taylor, and A. Lanitis. Multi-resolution search with active shape models. pages A:610–612, 1994. 
+		
+		\bibitem{18}
+		T. F. Cootes, C. J. Taylor, D. H. Cooper, and J. Graham. Active shape models-their training and application. Comput. Vis. Image Underst., 61(1):38–59, 1995.
+		
+		\bibitem{26}
+		I. Fasel, M. Bartlett, and J. Movellan. A comparison of gabor filter methods for automatic detection of facial landmarks, 2002. 
+			
+		\bibitem{29}
+		H. Gu, G. Su, and C. Du. Feature points extraction from faces. Proceedings of Image and Vision Computing New Zealand Conference, pages 154–158, November 2003. 
+		
+		\bibitem{35}
+		A. K. Jain and S. Z. Li. Handbook of Face Recognition. Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2005. 
+		
+		\bibitem{36}
+		F. Jiao, S. Li, H.-Y. Shum, and D. Schuurmans. Face alignment using statistical models and wavelet features. cvpr, 01:321, 2003.
+		
+		\bibitem{45}
+		A. Lanitis, C. J. Taylor, and T. F. Cootes. Automatic interpretation and coding of face images using flexible models. IEEE Trans. Pattern Anal. Mach. Intell., 19(7):743–756, 1997. 
+		
+		\bibitem{56}
+		Y. Liu, Y. Li, L. Tao, and G. Xu. Multi-view face alignment guided by several facial feature points. In ICIG ’04: Proceedings of the Third International Conference on Image and Graphics (ICIG’04), pages 238–241, Washington, DC, USA, 2004. IEEE Computer Society. 
+			
+		\bibitem{78}
+		Y. ShuiCheng and Q. Cheng. Multi-view face alignment using direct appearance models. In FGR ’02: Proceedings of the Fifth IEEE International Conference on Automatic Face and Gesture Recognition, page 324, Washington, DC, USA, 2002. IEEE Computer Society. 
+			
+		\bibitem{101}
+		S. Xin and H. Ai. Face alignment under various poses and expressions. In Tao et al. [85], pages 40–47. 
+	\end{thebibliography}
+
+\end{document}
