@@ -1,52 +1,57 @@
 \documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{amsmath}
 
 \begin{document}
 \par
-Equation (2.19) means the contribution in $J(H_M)$ of the ith example is the error of $h_M(x)$ on $x_i$,$e^{-y_ia_Mh_M(x_i)}$, multiplied by $e^{-y_iH_{(M-1)}(x_i)}$. So we can define the weight of the ith example after the Mth iteration as:
-\begin{center}
+Equation (2.19) means the contribution in $J(H_M)$ of the $i$th example is the error of $h_M(x)$ on $x_i, e^{-y_ia_Mh_M(x_i)}$, multiplied by $e^{-y_iH_{(M-1)}(x_i)}$. So we can define the weight of the $i$th example after the $M$th iteration as:
 \begin{equation}
-$$
-$w^{(M)}(x_i)$=$e^{-y_iH_M(x_i)}$
-$$
+	w^{(M)}(x_i) = e^{-y_iH_M(x_i)}
+	\label{eqn:2.20}
 \end{equation}
-\end{center}
 \par
 	Intuitively this is saying if the current strong classifier already can classify an example $x_i$ correctly, then it doesn’t really matter what performance the new weak classifier can achieve on $x_i$; on the other hand, we can expect $h_M(x)$ to fix this problem.
 \par
 	
 So the updated formula of $w^{(m)}(x_i)$ is:
-\begin{center}
 
 \begin{equation}
-$$
-$w^{(M)}(x_i)$=$w^{(M-1)}(x_i)e^{-y_ia_Mh_M(x_i)}$
-$$
+	w^{(M)}(x_i) = w^{(M-1)}(x_i)e^{-y_ia_Mh_M(x_i)}
+	\label{eqn:2.21}
 \end{equation}
-\end{center}
 
 \par	
-	Usually, the training set is unbalanced—the number of training images with $y_i$= 1 is larger(smaller) than the number of images with $y_i$=$-1$. In such cases, the $y_i$=1 ($y_i$=$-1$) set will dominate the training process. To eliminate this assymetry, one way is to initialize the sample weights such that:
-	\begin{center}
-		\begin{equation}
-		$$
-	$\displaystyle\sum_{i}w_i^{(0)}y_i$=0
-	$$
-	\end{equation}
-	\end{center}
+Usually, the training set is unbalanced—the number of training images with $y_i$= 1 is larger(smaller) than the number of images with $y_i$=$-1$. In such cases, the $y_i$=1 ($y_i$=$-1$) set will dominate the training process. To eliminate this assymetry, one way is to initialize the sample weights such that:
+\begin{equation}
+	\sum_{i}w_i^{(0)} y_i=0
+	\label{eqn:2.23}
+\end{equation}
 \par
-The algorithm is summarized in Alg.1.
+The algorithm is summarized in \ref{alg:1}.
 			
 \section{Face Alignment}
 The aim of face alignment is to achieve more accurate localization of the face, and usually the facial components (feature points). A typical result of face detection and face alignment is compared in Fig.2.7. As we can see, detection considers the images in terms of areas whereas alignment has a precision of pixels.
 \par
-Various algorithms have been proposed since 1990's. Gu \textit{ et al}. \cite{29} use histogram information to localize mouth corners and eye corners. In \cite{26}, Ian and Marian implement a preliminary alignment system using Gabor filter to detect pupils and philtrum. Curve fitting algorithms, especially Active Shape Model \cite{18} and its offspring may be the most
+Various algorithms have been proposed since 1990's. Gu \textit{ et al}. \cite{29} use histogram information to localize mouth corners and eye corners. In \cite{26}, Ian and Marian implement a preliminary alignment system using Gabor filter to detect pupils and philtrum. Curve fitting algorithms, especially Active Shape Model \cite{18} and its offspring may be the most successful alignment methods nowadays. Cootes \textit{ et al}. \cite{18} \cite{45} \cite{16} propose Active Shape Model and apply it to face image. After that, ASM is widely used in face image processing; a great amount of effort has been made to improve its speed, accuracy and robustness. In \cite{36} the Active Shape Model is combined with the Gabor filter; Li \textit{ et al}. \cite{78} propose Direct Appearance Model; \cite{56} and \cite{101} enhance ASM by using 2-D local textures feature for local search. 
 
-\textbf{Input:} \\
-\par Training examples Z={(x1,y1),...,(xn,yn)}, where N=a+b, of which a examples have $y_i$=1 and b examples have $y_i$=$-1$ \\
-\par The number M of weak classifiers to be combined.
+\par
+This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model.
+
+\begin{algorithm}[t]
+	\KwInput\:{Training examples $ Z={(x1,y1),...,(xn,yn)}$, where $N=a+b$, of which $a$ examples have $y_i=1$ and $b$ examples have $y_i=-1$ \\
+	The number $M$ of weak classifiers to be combined.}
+
+	\KwInitialization\:{
+		\[
+			$$ w_i^{(0)} = 
+			\begin{cases}
+				$\frac{1}{2a}$ &\quad \text{for those examples with y_i = 1}\\ 
+				$\frac{1}{2b}$ &\quad \text{otherwise}
+			\end{cases}
+			$$
+		\]
+	}
+\end{algorithm}
 
 \textbf{Initialization:} \\
 \par $w_i^{0}$=
@@ -70,16 +75,6 @@ $\begin{cases}
 \textbf{Output:} \\
 \par Classification function: $H_M(x)$ as in 2.20 \\
 \par Class label prediction:$y\land(x)$=sgn$(H_M(x))$
-
-\begin{center}
-	Algorithm 1: AdaBoost learning algorithm \cite{35}
-	
-\end{center}
-
-successful alignment methods nowadays. Cootes \textit{ et al}. \cite{18} \cite{45} \cite{16} propose Active Shape Model and apply it to face image. After that, ASM is widely used in face image processing; a great amount of effort has been made to improve its speed, accuracy and robustness. In \cite{36} the Active Shape Model is combined with the Gabor filter; Li \textit{ et al}. \cite{78} propose Direct Appearance Model; \cite{56} and \cite{101} enhance ASM by using 2-D local textures feature for local search. 
-
-\par
-This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model.
 
 \begin{thebibliography}{9}
 	\bibitem{16}

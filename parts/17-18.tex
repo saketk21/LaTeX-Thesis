@@ -1,7 +1,36 @@
 \documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
+\usepackage[demo]{graphicx}
+\usepackage{blindtext}
+\usepackage{subfig}
+\usepackage{caption}
+
 \begin{document}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics{../img/17_1.png}
+      \caption{Face Detection}
+      \label{fig:sub1}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+      \centering
+      \includegraphics{../img/17_2.png}
+      \caption{Face Alignment}
+      \label{fig:sub2}
+    \end{subfigure}
+    \caption{Detection Vs. Alignment}
+    \label{fig:test}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+  \includegraphics[width=\textwidth]{../img/18_1.png}     
+      \caption{Energy function and curve fitting}
+    \label{fig:face}
+\end{figure}
 
 \paragraph{}
 It’s worth pointing out that sometimes the energy function is not explicitly given, instead it’s implicitly defined in the searching scheme, for example, in Active Shape Model.
@@ -29,7 +58,7 @@ Compared to Eigenface which ignores the label of images, Tensorface analyzes a f
 Since Tensorface is shown to be a promising method in face recognition, some improvements have been proposed. \cite{92} proposes Multilinear Independent Component Analysis where they try to find the independent directions of variation. In \cite{76} Shashua et al. introduce Non-Negative Tensor Factorization which is a generalization of Non-negative Matrix Factorization.
 \par 
 \begin{figure}
-\includegraphics[width=\textwidth]{img/tensorface.png}
+\includegraphics[width=\textwidth]{../img/20_1.png}
 \caption{A partial visualization of TensorFaces bases for an ensemble of 2,700 facial images spanning 75 people, each imaged under 6 viewing and 6 illumination conditions \cite{92}}
 \label{Fig 2.9}
 \end{figure}
