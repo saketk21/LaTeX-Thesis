@@ -3,6 +3,8 @@
             left=0.8in,right=0.8in,top=1.2in,bottom=1.2in,%
 			]{geometry}
 \usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{caption}
 \usepackage{fancyhdr}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
@@ -51,14 +53,14 @@
 	\newpage
 	
 % Page no 7
-	\subsection*{Prototypic Emotional Expressions}
-	Instead of describing the detailed facial features, most FER systems attempt to recognize a small set of prototypic emotional expressions. The most widely-used set is perhaps human universal facial expressions of emotion which consists of six basic expression categories that have been shown to be recognizable across cultures \ref{fig:facialPhenotypes} .
+\subsubsection{Prototypic Emotional Expressions}
+Instead of describing the detailed facial features, most FER systems attempt to recognize a small set of prototypic emotional expressions. The most widely-used set is perhaps human universal facial expressions of emotion which consists of six basic expression categories that have been shown to be recognizable across cultures \ref{fig:facialPhenotypes} .
 
 These expressions, or facial configurations have been recognized in people from widely divergent cultural and social backgrounds, and they have been observed even in the faces of individuals born deaf and blind.
 
 These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and anger plus ``neutral'' which means no facial expression are considered in this work. Given a facial image, our system either works as a conventional classifier to determine the most likely emotion or estimates the weights (or possibility) of each emotion as a fuzzy classifier does.
 
-	\begin{figure}[h]
+	\begin{figure}[h!]
     	\centering
     	\includegraphics[width=0.5\textwidth]{img/12_1.png}
     	\caption{Basic facial expression phenotypes. 1, disgust; 2, fear; 3, joy; 4, surprise; 5, sadness; 6, anger}
@@ -85,8 +87,108 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 
 % Add Page 9 - 22
 
+% Page no - 17
+	\begin{figure}%
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth, height=0.8\linewidth]{img/17_1.png}
+		\caption[label a]{Face Detection [35]}
+		\label{fig:test1}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth, height=0.8\linewidth]{img/17_2.png}
+		\caption[label b]{Face Alignment [56]}
+		\label{fig:test2}
+		\end{subfigure}
+		\caption{Detection Vs Alignment}
+		\end{figure}
+		
+		\section{Curve Fitting}
+		The basic problem of curve fitting is to locate the contour of an object in an image. Most
+		curve fitting methods (explicitly or implicitly) consider two “forces”: internal force (elastic
+		force) caused by deformation and external force (image force) caused by density gradient.
+		As in physics, both internal force and external force cause potential energy, and the curve
+		fitting is achieved by minimizing the overall energy functional (Fig.2.8).
+		
+		In general, a contour can be represented by c = c(s), parameterized by its arc length,
+		s. The energy function can be expressed by:
+		\begin{equation}
+			\varepsilon = E_{elastic}(c) + E_{image}(c) = \int\limits_c (a(s)e_{elastic}(c,s) + b(s)e_{image}(c,s))ds
+		\end{equation}
+		
+		So the optimization problem can be expressed as
+		\begin{equation}
+			\underset{c}{\arg\min}E_{elastic} + E_{image}(c)
+		\end{equation}
+		
+		Usually, (2.24) is solved using iterative searching algorithms. A large number of curve
+		fitting methods have been proposed using a wide range of energy functions and searching
+		schemes.
 	\newpage
 	
+% Page no - 18
+	\begin{figure}[h!]
+		\centering
+	\includegraphics[width=\textwidth]{img/18_1.png}     
+		\caption{Energy function and curve fitting}
+		\label{fig:face}
+	\end{figure}
+
+	\paragraph{}
+	It’s worth pointing out that sometimes the energy function is not explicitly given,
+	instead it’s implicitly defined in the searching scheme, for example, in Active Shape Model.
+
+	\section{Feature Extraction}
+	“Feature extraction converts pixel data into a higher-level representation of shape, motion,
+	color, texture, and spatial configuration of the face or its components. The extracted
+	representation is used for subsequent classification. Feature extraction generally reduces
+	the dimensionality of the input space. The reduction procedure should (ideally) retain
+	essential information possessing high discrimination power and high stability” [14]. In the
+	face recognition area, various features have been used.
+
+	The coefficients of Eigenface can be used as features and recently, an extension of
+	Eigenface [90] defines Tensorface which has shown a promising choice of feature. Active
+	Appearance Model [17] decomposes the facial image into “shape” and “texture”. The shape
+	vector which is coded using ASM describes the contour of the facial components, whereas
+	the texture vector gives the “shape-free” facial texture. Matsuno et al. [41] extract features
+	\newpage
+
+% Page no - 19
+	\noindent using a two-dimensional mesh, called Potential Net. All the above-mentioned methods are considered as holistic features, because they are related to the overall structure of the image. There is another kind of features called local features, each of which focuses only on a small region. The most straightforward idea may be to directly use image sub-windows as local features: for example, in \cite{15} Colmenarez \textit{ et al}. use nine sub-windows located around the facial components. Wavelet filters have been used too, the most popular of which is the Gabor filter which has been shown \cite{22} \cite{37} to be a reasonable model of visual processing in primary visual cortex. Yin and Wei use topographic primitive features to represent faces \cite{103}. In \cite{104}, instead of defining features ahead of time, Yu and Bhanu use a evolutionary algorithm to generate features automatically. For video-based FER, the dynamic of expression can also serve as features. \cite{44} proposes Geometric Deformation Feature which represents the geometrical displacement of certain selected landmark nodes. In \cite{1}, Aleksic and Katsaggelos use Facial Animation Parameters which are based on Active Shape Model.
+	\par In this section, we'll briefly introduce some of these feature extraction methods
+	\par
+	\section {Tensorface}
+	Tensorface \cite{90} is a multilinear extension of Eigenface. Instead of representing the face image using a linear equation.
+	\begin{equation}
+	x=\overline{x}+\sum_{i}a_i x_i
+	\end{equation}
+	It models the face by a multilinear system which is equivalent to
+	\begin{equation}
+	x=\overline{x}+\sum_{i_1}...\sum_{i_1}a_{i_N}...a_{i_N} x_{i_1}..._{i_N}
+	\end{equation}
+	\par 
+	Compared to Eigenface which ignores the label of images, Tensorface analyzes a face ensemble with respect to its underlying factors(labels): for example, identities, views, and illuminations. The "principal components" in this multilinear system are referred to as Tensorfaces which are shown in Fig.2.9. The Tensorface coefficients a$_{i_k}$ can be used as features in a recognition task, and because the original image can be reproduced using 2.26, Tensorface coefficients can also be used for image synthesis where we first generate a set of coefficients, then use them to synthesize images.
+
+% Page no - 20
+	\newpage
+
+	\par
+	Since Tensorface is shown to be a promising method in face recognition, some improvements have been proposed. \cite{92} proposes Multilinear Independent Component Analysis where they try to find the independent directions of variation. In \cite{76} Shashua et al. introduce Non-Negative Tensor Factorization which is a generalization of Non-negative Matrix Factorization.
+	\par 
+	\begin{figure}
+	\includegraphics[width=\textwidth]{img/20_1.png}
+	\caption{A partial visualization of TensorFaces bases for an ensemble of 2,700 facial images spanning 75 people, each imaged under 6 viewing and 6 illumination conditions \cite{92}}
+	\label{Fig 2.9}
+	\end{figure}
+	\section{Potential Net}
+	\par 
+	Matsuno \textit{et al}. \cite{61} \cite{41} propose Potential Net to extract facial features. As shown in Fig.2.10, Potential Net is a two dimensional mesh of which nodes are connected to their four neighbors with springs, while the most exterior nodes are fixed to the frame of the Net. Similar to curve fitting, Potential Net considers two forces: each node in the mesh is driven
+
+% Pg 21 and 22
+
+	\newpage
+
 % Page no - 23
 	\begin{figure}
 		\centering \includegraphics[totalheight=8cm]{img/93_1.png}
