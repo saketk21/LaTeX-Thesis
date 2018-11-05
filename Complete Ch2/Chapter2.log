@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.7.31)  4 NOV 2018 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.4)  5 NOV 2018 22:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Chapter2.tex
 (./Chapter2.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 5 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -109,9 +109,64 @@ s
 \f@nch@O@olf=\skip50
 \f@nch@O@orf=\skip51
 )
+(/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count94
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip52
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count95
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip53
+\skiplinenumber=\skip54
+\skiprule=\skip55
+\skiphlne=\skip56
+\skiptext=\skip57
+\skiplength=\skip58
+\algomargin=\skip59
+\skipalgocfslide=\skip60
+\algowidth=\dimen120
+\inoutsize=\dimen121
+\inoutindent=\dimen122
+\interspacetitleruled=\dimen123
+\interspacealgoruled=\dimen124
+\interspacetitleboxruled=\dimen125
+\algocf@ruledwidth=\skip61
+\algocf@inoutbox=\box26
+\algocf@inputbox=\box27
+\AlCapSkip=\skip62
+\AlCapHSkip=\skip63
+\algoskipindent=\skip64
+\algocf@nlbox=\box28
+\algocf@hangingbox=\box29
+\algocf@untilbox=\box30
+\algocf@skipuntil=\skip65
+\algocf@capbox=\box31
+\algocf@lcaptionbox=\skip66
+\algoheightruledefault=\skip67
+\algoheightrule=\skip68
+\algotitleheightruledefault=\skip69
+\algotitleheightrule=\skip70
+\c@algocfline=\count96
+\c@algocfproc=\count97
+\c@algocf=\count98
+\algocf@algoframe=\box32
+\algocf@algobox=\box33
+)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2017/09/02 v2.17a AMS math features
-\@mathmargin=\skip52
+\@mathmargin=\skip71
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -120,67 +175,67 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
-\ex@=\dimen120
+\ex@=\dimen126
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen121
+\pmbraise@=\dimen127
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count94
+\inf@bad=\count99
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count95
-\leftroot@=\count96
+\uproot@=\count100
+\leftroot@=\count101
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count97
-\DOTSCASE@=\count98
+\classnum@=\count102
+\DOTSCASE@=\count103
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
-\Mathstrutbox@=\box26
-\strutbox@=\box27
-\big@size=\dimen122
+\Mathstrutbox@=\box34
+\strutbox@=\box35
+\big@size=\dimen128
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count99
-\c@MaxMatrixCols=\count100
+\macc@depth=\count104
+\c@MaxMatrixCols=\count105
 \dotsspace@=\muskip10
-\c@parentequation=\count101
-\dspbrk@lvl=\count102
+\c@parentequation=\count106
+\dspbrk@lvl=\count107
 \tag@help=\toks17
-\row@=\count103
-\column@=\count104
-\maxfields@=\count105
+\row@=\count108
+\column@=\count109
+\maxfields@=\count110
 \andhelp@=\toks18
-\eqnshift@=\dimen123
-\alignsep@=\dimen124
-\tagshift@=\dimen125
-\tagwidth@=\dimen126
-\totwidth@=\dimen127
-\lineht@=\dimen128
+\eqnshift@=\dimen129
+\alignsep@=\dimen130
+\tagshift@=\dimen131
+\tagwidth@=\dimen132
+\totwidth@=\dimen133
+\lineht@=\dimen134
 \@envbody=\toks19
-\multlinegap=\skip53
-\multlinetaggap=\skip54
+\multlinegap=\skip72
+\multlinetaggap=\skip73
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 ) (./Chapter2.aux)
 \openout1 = `Chapter2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -219,16 +274,16 @@ LaTeX Font Info:    ... okay on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count106
-\scratchdimen=\dimen129
-\scratchbox=\box28
-\nofMPsegments=\count107
-\nofMParguments=\count108
+\scratchcounter=\count111
+\scratchdimen=\dimen135
+\scratchbox=\box36
+\nofMPsegments=\count112
+\nofMParguments=\count113
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count109
-\MPscratchDim=\dimen130
-\MPnumerator=\count110
-\makeMPintoPDFobject=\count111
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen136
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
 \everyMPtoPDFconversion=\toks22
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -297,22 +352,22 @@ Chapter 2.
 [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
 <img/10_1.jpeg, id=11, 389.455pt x 558.085pt>
 File: img/10_1.jpeg Graphic file (type jpg)
 <use img/10_1.jpeg>
-Package pdftex.def Info: img/10_1.jpeg  used on input line 43.
+Package pdftex.def Info: img/10_1.jpeg  used on input line 44.
 (pdftex.def)             Requested size: 142.26378pt x 203.85687pt.
 <img/10_2.jpeg, id=12, 744.7825pt x 704.6325pt>
 File: img/10_2.jpeg Graphic file (type jpg)
 <use img/10_2.jpeg>
-Package pdftex.def Info: img/10_2.jpeg  used on input line 50.
+Package pdftex.def Info: img/10_2.jpeg  used on input line 51.
 (pdftex.def)             Requested size: 199.16928pt x 188.4255pt.
 
-Overfull \hbox (2.61108pt too wide) in paragraph at lines 41--55
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 42--56
 [][] []
  []
 
@@ -326,12 +381,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <img/12_1.png, id=16, 281.55188pt x 274.02374pt>
 File: img/12_1.png Graphic file (type png)
 <use img/12_1.png>
-Package pdftex.def Info: img/12_1.png  used on input line 69.
+Package pdftex.def Info: img/12_1.png  used on input line 70.
 (pdftex.def)             Requested size: 233.71085pt x 227.46474pt.
 <img/12_2.png, id=17, 837.88031pt x 228.10219pt>
 File: img/12_2.png Graphic file (type png)
 <use img/12_2.png>
-Package pdftex.def Info: img/12_2.png  used on input line 80.
+Package pdftex.def Info: img/12_2.png  used on input line 81.
 (pdftex.def)             Requested size: 467.42169pt x 127.24905pt.
 
 
@@ -357,7 +412,7 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
  [6]
-Underfull \hbox (badness 10000) in paragraph at lines 107--108
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
 
  []
 
@@ -387,18 +442,18 @@ Missing character: There is no ô in font cmr12!
 <img/25_1.png, id=43, 138.5175pt x 158.84344pt>
 File: img/25_1.png Graphic file (type png)
 <use img/25_1.png>
-Package pdftex.def Info: img/25_1.png  used on input line 164.
+Package pdftex.def Info: img/25_1.png  used on input line 165.
 (pdftex.def)             Requested size: 138.51715pt x 158.84305pt.
 <img/25_2.png, id=44, 141.52875pt x 111.41624pt>
 File: img/25_2.png Graphic file (type png)
 <use img/25_2.png>
-Package pdftex.def Info: img/25_2.png  used on input line 170.
+Package pdftex.def Info: img/25_2.png  used on input line 171.
 (pdftex.def)             Requested size: 141.5284pt x 111.41597pt.
  [9 <./img/25_1.png> <./img/25_2.png>]
 <img/13_1.png, id=48, 286.82156pt x 289.83281pt>
 File: img/13_1.png Graphic file (type png)
 <use img/13_1.png>
-Package pdftex.def Info: img/13_1.png  used on input line 214.
+Package pdftex.def Info: img/13_1.png  used on input line 215.
 (pdftex.def)             Requested size: 286.82085pt x 289.83209pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -437,77 +492,23 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no î in font cmr12!
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
+Underfull \hbox (badness 10000) in paragraph at lines 319--320
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--332
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 334.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 334.
-
-Underfull \hbox (badness 10000) in paragraph at lines 335--336
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--337
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--341
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--343
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 343--344
-
- []
-
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no í in font cmr12!
 [13]
-<img/17_1.png, id=62, 309.40594pt x 384.6872pt>
+<img/17_1.png, id=66, 309.40594pt x 384.6872pt>
 File: img/17_1.png Graphic file (type png)
 <use img/17_1.png>
-Package pdftex.def Info: img/17_1.png  used on input line 356.
+Package pdftex.def Info: img/17_1.png  used on input line 369.
 (pdftex.def)             Requested size: 140.23227pt x 186.97221pt.
-<img/17_2.png, id=63, 495.35063pt x 356.0803pt>
+<img/17_2.png, id=67, 495.35063pt x 356.0803pt>
 File: img/17_2.png Graphic file (type png)
 <use img/17_2.png>
-Package pdftex.def Info: img/17_2.png  used on input line 362.
+Package pdftex.def Info: img/17_2.png  used on input line 375.
 (pdftex.def)             Requested size: 233.70673pt x 186.96669pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -516,10 +517,10 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
  [14 <./img/17_1.png> <./img/17_2.png>]
-<img/18_1.png, id=67, 1318.9275pt x 621.32124pt>
+<img/18_1.png, id=71, 1318.9275pt x 621.32124pt>
 File: img/18_1.png Graphic file (type png)
 <use img/18_1.png>
-Package pdftex.def Info: img/18_1.png  used on input line 395.
+Package pdftex.def Info: img/18_1.png  used on input line 408.
 (pdftex.def)             Requested size: 467.42169pt x 220.1961pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -552,52 +553,60 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
  [15 <./img/18_1.png>] [16]
-<img/20_1.png, id=76, 585.68813pt x 440.39531pt>
+<img/20_1.png, id=80, 585.68813pt x 440.39531pt>
 File: img/20_1.png Graphic file (type png)
 <use img/20_1.png>
-Package pdftex.def Info: img/20_1.png  used on input line 442.
+Package pdftex.def Info: img/20_1.png  used on input line 455.
 (pdftex.def)             Requested size: 467.42169pt x 351.48344pt.
  [17 <./img/20_1.png>]
-<img/92_1.png, id=80, 381.425pt x 385.44pt>
+<img/92_1.png, id=84, 381.425pt x 385.44pt>
 File: img/92_1.png Graphic file (type png)
 <use img/92_1.png>
-Package pdftex.def Info: img/92_1.png  used on input line 457.
+Package pdftex.def Info: img/92_1.png  used on input line 470.
 (pdftex.def)             Requested size: 140.22792pt x 141.69896pt.
-<img/92_3.png, id=81, 505.89pt x 450.68375pt>
+<img/92_3.png, id=85, 505.89pt x 450.68375pt>
 File: img/92_3.png Graphic file (type png)
 <use img/92_3.png>
-Package pdftex.def Info: img/92_3.png  used on input line 458.
+Package pdftex.def Info: img/92_3.png  used on input line 471.
 (pdftex.def)             Requested size: 140.22792pt x 124.92523pt.
 
 
-LaTeX Warning: Citation `17' on page 18 undefined on input line 466.
+LaTeX Warning: Citation `17' on page 18 undefined on input line 479.
 
-<img/92_2.png, id=82, 1230.5975pt x 587.19376pt>
+<img/92_2.png, id=86, 1230.5975pt x 587.19376pt>
 File: img/92_2.png Graphic file (type png)
 <use img/92_2.png>
-Package pdftex.def Info: img/92_2.png  used on input line 472.
+Package pdftex.def Info: img/92_2.png  used on input line 485.
 (pdftex.def)             Requested size: 397.31128pt x 189.58133pt.
 [18 <./img/92_1.png> <./img/92_3.png>] [19 <./img/92_2.png>]
-<img/93_1.png, id=93, 353.06906pt x 360.59718pt>
+<img/93_1.png, id=97, 353.06906pt x 360.59718pt>
 File: img/93_1.png Graphic file (type png)
 <use img/93_1.png>
-Package pdftex.def Info: img/93_1.png  used on input line 497.
+Package pdftex.def Info: img/93_1.png  used on input line 510.
 (pdftex.def)             Requested size: 222.87106pt x 227.62204pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
-Underfull \hbox (badness 10000) in paragraph at lines 506--508
+Underfull \hbox (badness 10000) in paragraph at lines 519--521
 
  []
 
 [20 <./img/93_1.png>]
-<img/93_2.png, id=97, 504.38437pt x 594.72188pt>
+<img/93_2.png, id=101, 504.38437pt x 594.72188pt>
 File: img/93_2.png Graphic file (type png)
 <use img/93_2.png>
-Package pdftex.def Info: img/93_2.png  used on input line 516.
+Package pdftex.def Info: img/93_2.png  used on input line 529.
 (pdftex.def)             Requested size: 193.04568pt x 227.62204pt.
  [21 <./img/93_2.png>] [22]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 598.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 598.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
@@ -616,22 +625,22 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
 Missing character: There is no √ in font cmr12!
 Missing character: There is no ó in font cmr12!
-<img/98_1.png, id=107, 489.32813pt x 365.11406pt>
+<img/98_1.png, id=111, 489.32813pt x 365.11406pt>
 File: img/98_1.png Graphic file (type png)
 <use img/98_1.png>
-Package pdftex.def Info: img/98_1.png  used on input line 603.
+Package pdftex.def Info: img/98_1.png  used on input line 616.
 (pdftex.def)             Requested size: 244.66345pt x 182.55658pt.
 
 Underfull \vbox (badness 4805) has occurred while \output is active []
 
  [24 <./img/98_1.png>]
-<img/98_2.png, id=111, 675.27281pt x 621.82312pt>
+<img/98_2.png, id=115, 675.27281pt x 621.82312pt>
 File: img/98_2.png Graphic file (type png)
 <use img/98_2.png>
-Package pdftex.def Info: img/98_2.png  used on input line 617.
+Package pdftex.def Info: img/98_2.png  used on input line 630.
 (pdftex.def)             Requested size: 202.5834pt x 186.54837pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--625
+Underfull \hbox (badness 10000) in paragraph at lines 636--638
 
  []
 
@@ -642,10 +651,10 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
 [25 <./img/98_2.png>]
-<img/94_1.jpg, id=116, 381.67593pt x 204.765pt>
+<img/94_1.jpg, id=120, 381.67593pt x 204.765pt>
 File: img/94_1.jpg Graphic file (type jpg)
 <use img/94_1.jpg>
-Package pdftex.def Info: img/94_1.jpg  used on input line 649.
+Package pdftex.def Info: img/94_1.jpg  used on input line 662.
 (pdftex.def)             Requested size: 467.42169pt x 250.77837pt.
  [26 <./img/94_1.jpg>]
 Missing character: There is no ‚ in font cmr12!
@@ -733,28 +742,31 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3969 strings out of 494880
- 58771 string characters out of 6179601
- 133327 words of memory out of 5000000
- 7231 multiletter control sequences out of 15000+600000
- 11114 words of font info for 40 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
- 42i,12n,43p,1258b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 4989 strings out of 494923
+ 75241 string characters out of 6180742
+ 158643 words of memory out of 5000000
+ 8226 multiletter control sequences out of 15000+600000
+ 11461 words of font info for 41 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 42i,21n,43p,1258b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ti12.pfb>
-Output written on Chapter2.pdf (29 pages, 3140063 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Chapter2.pdf (29 pages, 3173777 bytes).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
+ 183 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

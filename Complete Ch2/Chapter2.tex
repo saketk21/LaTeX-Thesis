@@ -6,6 +6,7 @@
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage{fancyhdr}
+\usepackage{algorithm2e}
 \usepackage{amsmath}
 
 \fancyhf{}
@@ -316,36 +317,48 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 
 	\par
 	This section will mainly focus on curve-fitting types of method, in particular Active Shape Model and its ancestor Active Contour Model. \\ 
-	\textbf{Input:} \\
-	\par Training examples Z={(x1,y1),...,(xn,yn)}, where N=a+b, of which a examples have $y_i$=1 and b examples have $y_i$=$-1$ \\
-	\par The number M of weak classifiers to be combined.
+	
+	\RestyleAlgo{boxed}
+    \SetAlgoNoLine
+    \begin{algorithm}[t]
+        \DontPrintSemicolon
 
-	\textbf{Initialization:} \\
-	\[
-		w_i^{0}= \begin{cases}
-			\frac{1}{2a}  & \quad \text{for those examples with yi=1} \\
-			\frac{1}{2b}  & \quad \text{otherwise}
-			\end{cases}
-	\]
-	\textbf{end}\\
-	\textbf{Forward Inclusion:} \\
+        \SetKwInput{kwInput}{Input}
+        \SetKwInput{kwOutput}{Output}
+        
+        \SetKwProg{kwInit}{Initialization}{:}{end}
+        \SetKwProg{kwMain}{Forward Inclusion}{:}{end}
 
-	for m=1, ..., M do \\
-	\par \{
-	\par choose optimal $h_M$ to minimize the weighted error \\
-	\par choose $a_m$ according to (2.17) \\
-	\par update $w_i^{m} \leftarrow w_i^{(M-1)}e^{-y_ia_Mh_M(x_i)}$ and normalize to $\displaystyle\sum_{i}w_i^{(m)}=1$  \\
-	\par \}
-	\par end \\
-	end \\
-	\par 
-	\textbf{Output:} \\
-	\par Classification function: $H_M(x)$ as in 2.20 \\
-	\par Class label prediction:$y(x) = sgn(H_M(x))$
-
-	\begin{center}
-		Algorithm 1: AdaBoost learning algorithm \cite{35}
-	\end{center}
+        \kwInput{
+        \par
+            Training examples $ Z = \{(x_1 , y_1 ), . . . , (x_N , y_N )\} $, where $N = a + b$, of which $a$ examples have $y_i = 1$ and $b$ examples have $ y_i = −1 $\;
+            \vspace{0.25cm}
+            The number $M$ of weak classifiers to be combined.
+        }
+        \kwInit{}{
+            $
+                w_i^{(0)}= \begin{cases}
+                    \frac{1}{2a} & \text{$for\ those\ examples\ with\ y_i=1$} \\
+                    \frac{1}{2b} & \text{$otherwise$}
+                \end{cases}
+            $
+        \vspace{0.25cm}
+        }
+        \kwMain{}{
+            \For{m = 1, . . . , M}{
+                Choose optimal $h_m$ to minimize the weighted error\;
+                Choose $a_m$ according to (2.17)\;
+                Update $w_i^{(m)} \gets w_i^{(m-1)} e^{-y_ia_mh_m(x_i)}$ and normalize to $\sum_i{w_i^{(m)}} = 1$\;
+            }
+        \vspace{0.25cm}
+        }
+        \kwOutput{
+        \par
+            Classification Function: $H_M(x)$ as in (2.20)\;
+            Class Label Prediction: $\hat{y}(x) = sgn(H_M(x))$\;
+        }
+        \caption{AdaBoost Learning Algorithm [35]}
+    \end{algorithm}
 
 	\newpage
 	
