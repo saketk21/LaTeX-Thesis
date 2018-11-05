@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.4)  5 NOV 2018 22:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.4)  5 NOV 2018 22:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -496,6 +496,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 319--320
 
  []
 
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `htbp') on input line 323.
+
 Missing character: There is no â in font cmr12!
 Missing character: There is no ˆ in font cmr12!
 Missing character: There is no ’ in font cmr12!
@@ -742,10 +746,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4989 strings out of 494923
- 75241 string characters out of 6180742
+ 4975 strings out of 494923
+ 74943 string characters out of 6180742
  158643 words of memory out of 5000000
- 8226 multiletter control sequences out of 15000+600000
+ 8212 multiletter control sequences out of 15000+600000
  11461 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,21n,43p,1258b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -763,7 +767,7 @@ s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Chapter2.pdf (29 pages, 3173777 bytes).
+Output written on Chapter2.pdf (29 pages, 3173770 bytes).
 PDF statistics:
  183 PDF objects out of 1000 (max. 8388607)
  111 compressed objects within 2 object streams

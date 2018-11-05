@@ -320,14 +320,14 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	
 	\RestyleAlgo{boxed}
     \SetAlgoNoLine
-    \begin{algorithm}[t]
+    \begin{algorithm}[]
         \DontPrintSemicolon
 
         \SetKwInput{kwInput}{Input}
         \SetKwInput{kwOutput}{Output}
         
-        \SetKwProg{kwInit}{Initialization}{:}{end}
-        \SetKwProg{kwMain}{Forward Inclusion}{:}{end}
+        \SetKwBlock{kwInit}{Initialization:}{end}
+        \SetKwBlock{kwMain}{Forward Inclusion:}{end}
 
         \kwInput{
         \par
@@ -335,7 +335,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
             \vspace{0.25cm}
             The number $M$ of weak classifiers to be combined.
         }
-        \kwInit{}{
+        \kwInit{
             $
                 w_i^{(0)}= \begin{cases}
                     \frac{1}{2a} & \text{$for\ those\ examples\ with\ y_i=1$} \\
@@ -344,7 +344,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
             $
         \vspace{0.25cm}
         }
-        \kwMain{}{
+        \kwMain{
             \For{m = 1, . . . , M}{
                 Choose optimal $h_m$ to minimize the weighted error\;
                 Choose $a_m$ according to (2.17)\;
