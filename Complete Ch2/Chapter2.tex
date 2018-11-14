@@ -188,25 +188,13 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
 	\par
 	The sum of the pixels within rectangle $D$ in \ref{fig:29} can be computed using the integral image value on points $a, b, c, d$ as follows:
 
-	\begin{equation}
-		II(x2, y2) = \sum_{x<x2, y<y2}{I(x, y)} = A + B + C + D
-	\end{equation}
-
-	\begin{equation}
-		II(x2, y1) = \sum_{x<x2, y<y1}{I(x, y)} = A + C
-	\end{equation}
-
-	\begin{equation}
-		II(x1, y2) = \sum_{x<x1, y<y2}{I(x, y)} = A + B
-	\end{equation}
-
-	\begin{equation}
-		II(x1, y1) = \sum_{x<x2, y<y2}{I(x, y)} = A
-	\end{equation}
-
-	\begin{equation}
-		D = II(x2, y2) + II(x1, y1) - II(x2, y1) - II(x1, y2)
-	\end{equation}
+	\begin{align}
+		II(x2, y2) &= \sum_{x<x2, y<y2}{I(x, y)} = A + B + C + D \\
+		II(x2, y1) &= \sum_{x<x2, y<y1}{I(x, y)} = A + C \\
+		II(x1, y2) &= \sum_{x<x1, y<y2}{I(x, y)} = A + B \\
+		II(x1, y1) &= \sum_{x<x2, y<y2}{I(x, y)} = A \\
+		D &= II(x2, y2) + II(x1, y1) - II(x2, y1) - II(x1, y2)
+	\end{align}
 
 	\newpage
 % Page no. - 13
@@ -343,7 +331,7 @@ These 6 basic emotions, \textit{i.e.}, disgust, fear, joy, surprise, sadness and
                 \end{cases}
             $
         \vspace{0.25cm}
-        }
+		}
         \kwMain{
             \For{m = 1, . . . , M}{
                 Choose optimal $h_m$ to minimize the weighted error\;

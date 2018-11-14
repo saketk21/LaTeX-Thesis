@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.4)  5 NOV 2018 22:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.4)  14 NOV 2018 16:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -453,7 +453,7 @@ Package pdftex.def Info: img/25_2.png  used on input line 171.
 <img/13_1.png, id=48, 286.82156pt x 289.83281pt>
 File: img/13_1.png Graphic file (type png)
 <use img/13_1.png>
-Package pdftex.def Info: img/13_1.png  used on input line 215.
+Package pdftex.def Info: img/13_1.png  used on input line 203.
 (pdftex.def)             Requested size: 286.82085pt x 289.83209pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -492,13 +492,13 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no î in font cmr12!
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 323.
+               Default added (so using `htbp') on input line 311.
 
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no à in font cmr12!
@@ -507,12 +507,12 @@ Missing character: There is no í in font cmr12!
 <img/17_1.png, id=66, 309.40594pt x 384.6872pt>
 File: img/17_1.png Graphic file (type png)
 <use img/17_1.png>
-Package pdftex.def Info: img/17_1.png  used on input line 369.
+Package pdftex.def Info: img/17_1.png  used on input line 357.
 (pdftex.def)             Requested size: 140.23227pt x 186.97221pt.
 <img/17_2.png, id=67, 495.35063pt x 356.0803pt>
 File: img/17_2.png Graphic file (type png)
 <use img/17_2.png>
-Package pdftex.def Info: img/17_2.png  used on input line 375.
+Package pdftex.def Info: img/17_2.png  used on input line 363.
 (pdftex.def)             Requested size: 233.70673pt x 186.96669pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -524,7 +524,7 @@ Missing character: There is no ù in font cmr12!
 <img/18_1.png, id=71, 1318.9275pt x 621.32124pt>
 File: img/18_1.png Graphic file (type png)
 <use img/18_1.png>
-Package pdftex.def Info: img/18_1.png  used on input line 408.
+Package pdftex.def Info: img/18_1.png  used on input line 396.
 (pdftex.def)             Requested size: 467.42169pt x 220.1961pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
@@ -560,39 +560,39 @@ Missing character: There is no ù in font cmr12!
 <img/20_1.png, id=80, 585.68813pt x 440.39531pt>
 File: img/20_1.png Graphic file (type png)
 <use img/20_1.png>
-Package pdftex.def Info: img/20_1.png  used on input line 455.
+Package pdftex.def Info: img/20_1.png  used on input line 443.
 (pdftex.def)             Requested size: 467.42169pt x 351.48344pt.
  [17 <./img/20_1.png>]
 <img/92_1.png, id=84, 381.425pt x 385.44pt>
 File: img/92_1.png Graphic file (type png)
 <use img/92_1.png>
-Package pdftex.def Info: img/92_1.png  used on input line 470.
+Package pdftex.def Info: img/92_1.png  used on input line 458.
 (pdftex.def)             Requested size: 140.22792pt x 141.69896pt.
 <img/92_3.png, id=85, 505.89pt x 450.68375pt>
 File: img/92_3.png Graphic file (type png)
 <use img/92_3.png>
-Package pdftex.def Info: img/92_3.png  used on input line 471.
+Package pdftex.def Info: img/92_3.png  used on input line 459.
 (pdftex.def)             Requested size: 140.22792pt x 124.92523pt.
 
 
-LaTeX Warning: Citation `17' on page 18 undefined on input line 479.
+LaTeX Warning: Citation `17' on page 18 undefined on input line 467.
 
 <img/92_2.png, id=86, 1230.5975pt x 587.19376pt>
 File: img/92_2.png Graphic file (type png)
 <use img/92_2.png>
-Package pdftex.def Info: img/92_2.png  used on input line 485.
+Package pdftex.def Info: img/92_2.png  used on input line 473.
 (pdftex.def)             Requested size: 397.31128pt x 189.58133pt.
 [18 <./img/92_1.png> <./img/92_3.png>] [19 <./img/92_2.png>]
 <img/93_1.png, id=97, 353.06906pt x 360.59718pt>
 File: img/93_1.png Graphic file (type png)
 <use img/93_1.png>
-Package pdftex.def Info: img/93_1.png  used on input line 510.
+Package pdftex.def Info: img/93_1.png  used on input line 498.
 (pdftex.def)             Requested size: 222.87106pt x 227.62204pt.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
-Underfull \hbox (badness 10000) in paragraph at lines 519--521
+Underfull \hbox (badness 10000) in paragraph at lines 507--509
 
  []
 
@@ -600,17 +600,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 519--521
 <img/93_2.png, id=101, 504.38437pt x 594.72188pt>
 File: img/93_2.png Graphic file (type png)
 <use img/93_2.png>
-Package pdftex.def Info: img/93_2.png  used on input line 529.
+Package pdftex.def Info: img/93_2.png  used on input line 517.
 (pdftex.def)             Requested size: 193.04568pt x 227.62204pt.
  [21 <./img/93_2.png>] [22]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 598.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 586.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 598.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 586.
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
@@ -632,7 +632,7 @@ Missing character: There is no ó in font cmr12!
 <img/98_1.png, id=111, 489.32813pt x 365.11406pt>
 File: img/98_1.png Graphic file (type png)
 <use img/98_1.png>
-Package pdftex.def Info: img/98_1.png  used on input line 616.
+Package pdftex.def Info: img/98_1.png  used on input line 604.
 (pdftex.def)             Requested size: 244.66345pt x 182.55658pt.
 
 Underfull \vbox (badness 4805) has occurred while \output is active []
@@ -641,10 +641,10 @@ Underfull \vbox (badness 4805) has occurred while \output is active []
 <img/98_2.png, id=115, 675.27281pt x 621.82312pt>
 File: img/98_2.png Graphic file (type png)
 <use img/98_2.png>
-Package pdftex.def Info: img/98_2.png  used on input line 630.
+Package pdftex.def Info: img/98_2.png  used on input line 618.
 (pdftex.def)             Requested size: 202.5834pt x 186.54837pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 636--638
+Underfull \hbox (badness 10000) in paragraph at lines 624--626
 
  []
 
@@ -658,7 +658,7 @@ Missing character: There is no ù in font cmr12!
 <img/94_1.jpg, id=120, 381.67593pt x 204.765pt>
 File: img/94_1.jpg Graphic file (type jpg)
 <use img/94_1.jpg>
-Package pdftex.def Info: img/94_1.jpg  used on input line 662.
+Package pdftex.def Info: img/94_1.jpg  used on input line 650.
 (pdftex.def)             Requested size: 467.42169pt x 250.77837pt.
  [26 <./img/94_1.jpg>]
 Missing character: There is no ‚ in font cmr12!
@@ -767,7 +767,7 @@ s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Chapter2.pdf (29 pages, 3173770 bytes).
+Output written on Chapter2.pdf (29 pages, 3173720 bytes).
 PDF statistics:
  183 PDF objects out of 1000 (max. 8388607)
  111 compressed objects within 2 object streams
